@@ -17,6 +17,7 @@ Installs the following tools on my Ubuntu (16.04+) workstation:
     ./run.sh [ansible args]
 
 `run.sh` is a wrapper that
+
 1. Uses `apt` to install `pip`, `ansible` and `ohai` if needed.
 1. Invokes `ansible-playbook` with the correct arguments.
 
@@ -25,6 +26,7 @@ Do `man ansible-playbook` for more info.
 ### Tags
 
 The following tags are defined:
+
 - docker
 - docker-machine
 - docker-compose
