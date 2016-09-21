@@ -14,7 +14,7 @@ Installs the following tools on my Ubuntu (16.04+) workstation:
 
     git clone https://github.com/ollehallin/workstation
     cd workstation
-    ./run.sh [ansible args]
+    ./run.sh [ansible-playbook args]
 
 `run.sh` is a wrapper that
 
