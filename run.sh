@@ -9,5 +9,4 @@ if [ "$ansible" == "" -o "$ohai" == "" ]; then
 fi
 
 cd $(dirname $0)/ansible
-ansible-galaxy install franklinkim.docker
 sudo ansible-playbook -i inventory playbook.yml $*
