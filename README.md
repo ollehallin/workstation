@@ -28,6 +28,7 @@ Do `man ansible-playbook` for more info.
 The following tags are defined:
 
 - docker
+- docker-engine
 - docker-machine
 - docker-compose
 - java
@@ -49,6 +50,7 @@ To skip certain tags you can do e.g.,
 The third-party roles that are needed are defined by `ansible/requirements.yml`
 
 When a new role is needed, do like this:
+
 1. `cd ansible`
 1. Edit `requirements.yml`
 1. `ansible-galaxy install -r requirements.yml`
