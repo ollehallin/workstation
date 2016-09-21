@@ -1,14 +1,25 @@
-# Configure my personal workstation
+# Configure my personal workstation (aka _dotfiles_)
 
-Installs the following tools on my Ubuntu (16.04+) workstation:
+This is not a normal dotfiles project, since it does not care about e.g., .bashrc, .profile and such files.
 
-- Ansible
-- VirtualBox
-- Vagrant
-- Docker, Docker Machine, Docker Compose
-- OpenJDK 8
-- Emacs
-- Fish
+It concentrates on stuff that is difficult to handle for reasons such as
+
+- Not present in standard Ubuntu channel
+- The standard Ubuntu channel is lagging
+- Is not packaged as a .deb
+- Is convenient to get in one command
+
+## Goal
+
+It installs the following tools on my Ubuntu (16.04+) workstation:
+
+- Ansible (reason: standard Ubuntu channel is lagging)
+- VirtualBox (custom APT source)
+- Vagrant (convenience)
+- Docker, Docker Machine, Docker Compose (custom APT source, missing .debs)
+- OpenJDK 8 (convenience)
+- Emacs (convenience)
+- Fish (convenience)
 
 ## How to use
 
@@ -34,9 +45,10 @@ The following tags are defined:
 - java
 - virtualbox
 - vagrant
-- misc
 - shell
+- fish
 - editor
+- emacs
 
 To only install e.g., Docker & OpenJDK you can use
 
