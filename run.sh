@@ -10,4 +10,4 @@ fi
 
 cd $(dirname $0)/ansible
 ansible-galaxy install franklinkim.docker
-ansible-playbook -i inventory playbook.yml $*
+sudo ansible-playbook -i inventory playbook.yml $*
