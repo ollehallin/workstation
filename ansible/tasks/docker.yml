@@ -1,0 +1,47 @@
+---
+- name: Install docker-cleanup in /etc/cron.daily
+  copy: src=files/docker-cleanup dest=/etc/cron.daily owner=root group=root mode=a=rx
+  tags:
+  - docker
+
+- name: Check installed version of docker-compose
+  command: docker-compose --version
+  register: dm_installed_version
+  ignore_errors: yes
+  failed_when: false
+  changed_when: false
+  tags:
+  - docker
+  - docker-compose
+  
+- name: Install docker-compose
+  when: "dm_installed_version.stdout is not defined or dm_installed_version.stdout.find('{{ docker_compose_version }}') == -1"
+  get_url:
+    url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}
+    dest: /usr/local/bin/docker-compose
+    force: yes
+    mode: a=rx
+  tags:
+  - docker
+  - docker-compose
+#---
+- name: Check installed version of docker-machine
+  command: docker-machine --version
+  register: dm_installed_version
+  ignore_errors: yes
+  failed_when: false
+  changed_when: false
+  tags:
+  - docker
+  - docker-machine
+
+- name: Install docker-machine
+  when: "dm_installed_version.stdout is not defined or dm_installed_version.stdout.find('{{ docker_machine_version }}') == -1"
+  get_url:
+    url: https://github.com/docker/machine/releases/download/v{{ docker_machine_version }}/docker-machine-{{ ansible_system }}-{{ ansible_architecture }}
+    dest: /usr/local/bin/docker-machine
+    force: yes
+    mode: a=rx
+  tags:
+  - docker
+  - docker-machine

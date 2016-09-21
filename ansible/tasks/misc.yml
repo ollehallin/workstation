@@ -1,0 +1,28 @@
+---
+- name: Install Fish
+  package: name=fish state=present
+  tags:
+  - misc
+  - shell
+  
+- name: Get the current login shell
+  set_fact:
+  args:
+    current_login_shell: "{{ lookup('csvfile',  lookup('env', 'USER') + ' file=\"/etc/passwd\" delimiter=: col=6') }}"
+  tags:
+  - misc
+  - shell
+  
+- name: Set Fish as login shell
+  when:  "{{ current_login_shell != '/usr/bin/fish' }}"
+  shell: chsh --shell /usr/bin/fish {{ lookup('env', 'USER') }}
+  tags:
+  - misc
+  - shell
+
+- name: Install Emacs
+  package: name=emacs24 state=present
+  tags:
+  - misc
+  - editor
+  - emacs

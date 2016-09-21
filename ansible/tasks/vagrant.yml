@@ -1,0 +1,9 @@
+---
+  
+- name: Install Vagrant
+  apt: package={{ item }} state=present
+  with_items:
+  - vagrant
+  - vagrant-cachier
+  tags:
+  - vagrant

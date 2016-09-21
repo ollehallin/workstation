@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ $(docker images -qf dangling=true | wc -l) -gt 0 ]; then
+    docker rmi $(docker images -qf dangling=true)
+fi
+
+if [ $(docker volume ls -qf dangling=true | wc -l) -gt 0 ]; then
+    docker volume rm $(docker volume ls -qf dangling=true)
+fi

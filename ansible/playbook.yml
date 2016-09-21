@@ -1,0 +1,17 @@
+---
+- hosts: all
+  connection: local
+  become: yes
+  vars:
+  - docker_compose_version: 1.8.0
+  - docker_machine_version: 0.7.0
+
+  roles:
+    - {role: franklinkim.docker, tags: [docker, docker-engine] }
+  
+  post_tasks:
+  - include: tasks/docker.yml
+  - include: tasks/java.yml
+  - include: tasks/virtualbox.yml
+  - include: tasks/vagrant.yml
+  - include: tasks/misc.yml
