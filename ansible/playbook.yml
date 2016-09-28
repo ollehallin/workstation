@@ -14,4 +14,5 @@
   - include: tasks/java.yml
   - include: tasks/virtualbox.yml
   - include: tasks/vagrant.yml
+  - include: tasks/aws-cli.yml
   - include: tasks/misc.yml
