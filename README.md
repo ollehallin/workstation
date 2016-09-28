@@ -20,6 +20,8 @@ It installs the following tools on my Ubuntu (16.04+) workstation:
 - OpenJDK 8 (convenience)
 - Emacs (convenience)
 - Fish (convenience)
+- AWS CLI
+
 
 ## How to use
 
