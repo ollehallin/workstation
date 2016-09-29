@@ -25,3 +25,13 @@
   tags:
   - editor
   - emacs
+
+- name: Install misc utilities
+  package: name={{ item }} state=present
+  with_items:
+  - jq
+  - unzip
+  - curl
+  - wget
+  tags:
+  - misc
