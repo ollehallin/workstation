@@ -33,5 +33,16 @@
   - unzip
   - curl
   - wget
+  - compizconfig-settings-manager
+  - dconf-cli
   tags:
   - misc
+
+- name: Do some dconf editing
+  command: dconf write {{ item.k }} {{ item.v }}
+  with_items:
+  - { k: '/org/gnome/settings-daemon/plugins/media-keys/screensaver', v: '\"<Shift><Super>L\"' }
+  - { k: '/org/gnome/desktop/wm/preferences/mouse-button-modifier', v: '\"<Alt><Super>\"' }
+  tags:
+  - misc
+  - gnome
