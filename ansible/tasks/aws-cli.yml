@@ -6,12 +6,12 @@
   - aws
 
 - name: Create AWS config directory
-  file: path=/home/olle/.aws state=directory owner=olle group=olle mode=0755
+  file: path=/home/{{ actual_username }}/.aws state=directory owner={{ actual_username }} group={{ actual_username }} mode=0755
   tags:
   - aws
 
 - name: Configure AWS CLI
-  ini_file: dest=/home/olle/.aws/config owner=olle group=olle mode=0644 section={{ item.s }}  option={{ item.k }} value={{ item.v }}
+  ini_file: dest=/home/{{ actual_username }}/.aws/config owner={{ actual_username }} group={{ actual_username }} mode=0644 section={{ item.s }}  option={{ item.k }} value={{ item.v }}
   with_items:
   - { s: 'profile hit', k: region, v: eu-west-1 }
   - { s: 'profile crisp', k: region, v: eu-central-1 }

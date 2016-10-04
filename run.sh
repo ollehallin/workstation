@@ -9,4 +9,4 @@ if [ "$ansible" == "" -o "$ohai" == "" ]; then
 fi
 
 cd $(dirname $0)/ansible
-sudo ansible-playbook -i inventory playbook.yml $*
+sudo ansible-playbook -i inventory playbook.yml -e "actual_username=${USER}" $*
