@@ -46,3 +46,11 @@
   tags:
   - misc
   - gnome
+
+- name: Increase inotify watch limit
+  copy: src=60-jetbrains.conf dest=/etc/sysctl.d/60-jetbrains.conf
+  notify: sysctl --system
+  tags:
+  - sysctl
+
+

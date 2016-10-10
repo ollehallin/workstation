@@ -6,6 +6,9 @@
   - docker_compose_version: 1.8.0
   - docker_machine_version: 0.7.0
 
+  handlers:
+  - include: handlers/main.yml
+
   roles:
     - {role: franklinkim.docker, tags: [docker, docker-engine] }
   
