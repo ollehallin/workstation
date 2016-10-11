@@ -35,8 +35,6 @@
   - wget
   - compizconfig-settings-manager
   - dconf-cli
-  tags:
-  - misc
 
 - name: Do some dconf editing
   command: dconf write {{ item.k }} {{ item.v }}
@@ -44,14 +42,12 @@
   - { k: '/org/gnome/settings-daemon/plugins/media-keys/screensaver', v: '\"<Shift><Super>L\"' }
   - { k: '/org/gnome/desktop/wm/preferences/mouse-button-modifier', v: '\"<Alt><Super>\"' }
   tags:
-  - misc
   - gnome
 
 - name: Increase inotify watch limit
   copy: src=60-jetbrains.conf dest=/etc/sysctl.d/60-jetbrains.conf
   notify: sysctl --system
   tags:
-  - misc
   - sysctl
 
 

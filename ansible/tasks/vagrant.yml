@@ -5,5 +5,3 @@
   with_items:
   - vagrant
   - vagrant-cachier
-  tags:
-  - vagrant
