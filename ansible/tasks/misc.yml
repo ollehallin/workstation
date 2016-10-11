@@ -1,53 +1,24 @@
 ---
-- name: Install Fish
-  package: name=fish state=present
-  tags:
-  - shell
-  - fish
-
-- name: Get the current login shell
-  set_fact:
-  args:
-    current_login_shell: "{{ lookup('csvfile',  lookup('env', 'USER') + ' file=\"/etc/passwd\" delimiter=: col=6') }}"
-  tags:
-  - shell
-  - fish
-  
-- name: Set Fish as login shell
-  when:  "{{ current_login_shell != '/usr/bin/fish' }}"
-  shell: chsh --shell /usr/bin/fish {{ lookup('env', 'USER') }}
-  tags:
-  - shell
-  - fish
-
-- name: Install Emacs
-  package: name=emacs24 state=present
-  tags:
-  - editor
-  - emacs
-
 - name: Install misc utilities
   package: name={{ item }} state=present
   with_items:
+  - compizconfig-settings-manager
+  - curl
+  - dconf-cli
+  - emacs24
+  - fish
   - jq
   - unzip
-  - curl
   - wget
-  - compizconfig-settings-manager
-  - dconf-cli
 
-- name: Do some dconf editing
-  command: dconf write {{ item.k }} {{ item.v }}
-  with_items:
-  - { k: '/org/gnome/settings-daemon/plugins/media-keys/screensaver', v: '\"<Shift><Super>L\"' }
-  - { k: '/org/gnome/desktop/wm/preferences/mouse-button-modifier', v: '\"<Alt><Super>\"' }
+- name: Set Fish as login shell
+  user: name={{ actual_username }} shell=/usr/bin/fish
   tags:
-  - gnome
+  - shell
+  - fish
 
 - name: Increase inotify watch limit
   copy: src=60-jetbrains.conf dest=/etc/sysctl.d/60-jetbrains.conf
   notify: sysctl --system
   tags:
   - sysctl
-
-
