@@ -5,6 +5,8 @@
   vars:
   - docker_compose_version: 1.8.0
   - docker_machine_version: 0.7.0
+  - intellij_version: 163.6110.12
+  - intellij_download_classifier: "-no-jdk"
 
   handlers:
   - include: handlers/main.yml
@@ -20,3 +22,4 @@
   - {include: tasks/aws-cli.yml, tags: aws}
   - {include: tasks/misc.yml, tags: misc}
   - {include: tasks/sdkman.yml, tags: sdkman}
+  - {include: tasks/intellij.yml, tags: intellij}

@@ -1,0 +1,36 @@
+---
+- name: Ensure /home/{{ actual_username }}/{{ item }} exists
+  file: path=/home/{{ actual_username }}/{{ item }} state=directory owner={{ actual_username }} group={{ actual_username }}
+  with_items:
+  - apps
+  - "Hämtningar"
+
+- set_fact: intellij_archive=ideaIU-{{ intellij_version }}{{ intellij_download_classifier }}.tar.gz
+
+- name: Download {{ intellij_archive }} into /home/{{ actual_username }}/Hämtningar
+  get_url:
+    url: https://download.jetbrains.com/idea/{{ intellij_archive }}
+    dest: /home/{{ actual_username }}/Hämtningar/{{ intellij_archive }}
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+
+- name: Unpack {{ intellij_archive }} into /home/{{ actual_username }}/apps/
+  unarchive:
+    src: /home/{{ actual_username }}/Hämtningar/{{ intellij_archive }}
+    copy: no
+    dest: /home/{{ actual_username }}/apps/
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    creates: /home/{{ actual_username }}/apps/idea-IU-{{ intellij_version }}
+
+- name: Install desktop files
+  template: src=templates/jetbrains-idea.desktop dest=/home/{{ actual_username }}/{{ item }}/jetbrains-idea.desktop
+  with_items:
+  - .gnome/apps
+  - .local/share/applications
+
+- name: Create symlink for convenience
+  file:
+    src: /home/{{ actual_username }}/apps/idea-IU-{{ intellij_version }}
+    dest: /home/{{ actual_username }}/apps/idea
+    state: link
