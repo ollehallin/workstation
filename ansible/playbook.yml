@@ -6,6 +6,7 @@
   - docker_compose_version: 1.8.0
   - docker_machine_version: 0.7.0
   - intellij_version: 163.6110.12
+  - intellij_checksum: "sha256:35614483efe45738da987c319e160eff4061a794f295f575b68207069f021eef"
   - intellij_download_classifier: "-no-jdk"
 
   handlers:

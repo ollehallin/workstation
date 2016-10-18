@@ -10,6 +10,7 @@
 - name: Download {{ intellij_archive }} into /home/{{ actual_username }}/Hämtningar
   get_url:
     url: https://download.jetbrains.com/idea/{{ intellij_archive }}
+    checksum: "{{ intellij_checksum }}"
     dest: /home/{{ actual_username }}/Hämtningar/{{ intellij_archive }}
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
