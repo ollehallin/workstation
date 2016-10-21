@@ -1,4 +1,18 @@
 ---
+  
+- name: Install OpenJDK
+  package: name={{ item }} state=present
+  with_items:
+  - openjdk-8-jdk
+  - openjdk-8-source
+  - openjdk-8-doc
+
+- name: Install Node and NPM
+  package: name={{ item }} state=present
+  with_items:
+  - npm
+  - nodejs-legacy
+
 - set_fact: sdkman_dir={{ lookup('env', 'HOME')}}/.sdkman
 
 - name: Install SDKMAN
@@ -14,3 +28,5 @@
 
 - name: Execute sdkman-init.sh
   shell: "{{ sdkman_dir }}/bin/sdkman-init.sh"
+  args:
+    creates: "{{ sdkman_dir }}/var/version"
