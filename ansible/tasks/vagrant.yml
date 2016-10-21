@@ -5,3 +5,4 @@
   with_items:
   - vagrant
   - vagrant-cachier
+  # vagrant-vbguest
