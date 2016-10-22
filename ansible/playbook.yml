@@ -24,3 +24,4 @@
   - {include: tasks/misc.yml, tags: misc}
   - {include: tasks/intellij.yml, tags: intellij}
   - {include: tasks/spotify.yml, tags: spotify}
+  - {include: tasks/calibre.yml, tags: calibre}

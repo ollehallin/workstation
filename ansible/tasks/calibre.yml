@@ -1,0 +1,4 @@
+---
+- name: Install Calibre
+  package: name=calibre state=installed
+
