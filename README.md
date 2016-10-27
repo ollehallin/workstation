@@ -38,23 +38,11 @@ Do `man ansible-playbook` for more info.
 
 ### Tags
 
-The following tags are defined:
-
-- docker
-- docker-engine
-- docker-machine
-- docker-compose
-- java
-- virtualbox
-- vagrant
-- shell
-- fish
-- editor
-- emacs
+Do `./run.sh --list-tags` to see what tags are defined.
 
 To only install e.g., Docker & OpenJDK you can use
 
-    ./run.sh --tags docker,java
+    ./run.sh --tags docker,compilers
 
 To skip certain tags you can do e.g.,
 
