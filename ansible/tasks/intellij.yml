@@ -32,12 +32,10 @@
 - name: Install desktop files
   template:
     src: templates/jetbrains-idea.desktop
-    dest: /home/{{ actual_username }}/{{ item }}/jetbrains-idea.desktop
+    dest: /home/{{ actual_username }}/.local/share/applications/jetbrains-idea.desktop
+    mode: 0755
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
-  with_items:
-  - .gnome/apps
-  - .local/share/applications
 
 - name: Create symlink for convenience
   file:
