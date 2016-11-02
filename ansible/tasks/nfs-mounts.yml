@@ -1,0 +1,9 @@
+---
+- name: Define NFS mounts
+  blockinfile:
+      dest: /etc/fstab
+      block: |
+        diskus.local:/volume1/foto /media/foto nfs rw,soft,intr,user
+        diskus.local:/volume1/video /media/video nfs rw,soft,intr,user
+        diskus.local:/volume1/musik /media/musik nfs rw,soft,intr,user
+        diskus.local:/volume1/files /media/files nfs rw,soft,intr,user
