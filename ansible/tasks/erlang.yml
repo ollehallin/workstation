@@ -1,15 +1,15 @@
 ---
+- name: Install Erlang Solutions APT key
+  apt_key: url=https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc state=present
+
 - name: Make sure Erlang Solutions APT source is defined
   apt_repository:
     filename: erlang
     repo: "deb https://packages.erlang-solutions.com/ubuntu {{ distribution_release | default(ansible_distribution_release) }} contrib"
     state: present
 
-- name: Install Erlang Solutions APT key
-  apt_key: url=https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc state=present
-
-- name: Install VirtualBox
+- name: Install Erlang
   package: name={{ item }} state=present
   with_items:
-  - erlang
+  - esl-erlang
   - elixir
