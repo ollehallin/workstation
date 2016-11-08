@@ -2,3 +2,29 @@
 - name: Install Calibre
   package: name=calibre state=installed
 
+- name: Create Calibre config directory
+  file:
+    path: "{{ lookup('env', 'HOME')}}/.config/calibre"
+    state: directory
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0755
+
+- name: Customize Calibre library path
+  lineinfile:
+    dest: "{{ lookup('env', 'HOME')}}/.config/calibre/global.py"
+    regexp: ^library_path.*
+    line: library_path = u'{{ lookup('env', 'HOME')}}/Dropbox/Calibre-bibliotek'
+    backup: yes
+
+- name: Customize Calibre SMTP
+  template:
+    src: files/calibre/{{ item }}
+    dest: "{{ lookup('env', 'HOME')}}/.config/calibre/{{ item }}"
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0644
+    backup: yes
+  with_items:
+  - smtp.py
+

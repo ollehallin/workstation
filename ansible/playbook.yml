@@ -9,6 +9,9 @@
   - intellij_checksum: "sha256:2218dcc22bc6202cd109988dc47a6bb1c1006d2366eaa5be53a43441c73fed2d"
   - intellij_download_classifier: "-no-jdk"
 
+  vars_files:
+  - vars/secrets.yml
+
   handlers:
   - include: handlers/main.yml
 
@@ -17,6 +20,7 @@
   
   post_tasks:
   - {include: tasks/docker.yml, tags: docker}
+  - {include: tasks/calibre.yml, tags: calibre}
   - {include: tasks/compilers.yml, tags: compilers}
   - {include: tasks/virtualbox.yml, tags: virtualbox, distribution_release: xenial}
   - {include: tasks/vagrant.yml, tags: vagrant}
