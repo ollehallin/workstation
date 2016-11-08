@@ -5,8 +5,8 @@
   vars:
   - docker_compose_version: 1.8.0
   - docker_machine_version: 0.7.0
-  - intellij_version: 163.6110.12
-  - intellij_checksum: "sha256:35614483efe45738da987c319e160eff4061a794f295f575b68207069f021eef"
+  - intellij_version: 163.7342.3
+  - intellij_checksum: "sha256:2218dcc22bc6202cd109988dc47a6bb1c1006d2366eaa5be53a43441c73fed2d"
   - intellij_download_classifier: "-no-jdk"
 
   handlers:
