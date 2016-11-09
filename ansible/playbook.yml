@@ -28,4 +28,3 @@
   - {include: tasks/misc.yml, tags: misc}
   - {include: tasks/intellij.yml, tags: intellij}
   - {include: tasks/nfs-mounts.yml, tags: nfs-mounts}
-  - {include: tasks/erlang.yml, tags: erlang, when: "{{install_erlang is defined}}" }

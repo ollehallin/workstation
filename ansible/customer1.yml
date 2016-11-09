@@ -1,0 +1,13 @@
+---
+- hosts: all
+  connection: local
+  become: yes
+  vars_files:
+  - vars/secrets.yml
+
+  handlers:
+  - include: handlers/main.yml
+
+  post_tasks:
+  - {include: tasks/cisco-vpn-client.yml, tags: vpn}
+  - {include: tasks/erlang.yml, tags: erlang}

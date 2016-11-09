@@ -1,0 +1,6 @@
+---
+- name: Install Cisco VPN client
+  package: name={{ item }} state=present
+  with_items:
+  - vpnc
+  - network-manager-vpnc-gnome
