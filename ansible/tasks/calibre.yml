@@ -19,12 +19,10 @@
 
 - name: Customize Calibre SMTP
   template:
-    src: files/calibre/{{ item }}
-    dest: "{{ lookup('env', 'HOME')}}/.config/calibre/{{ item }}"
+    src: files/calibre-smtp.py
+    dest: "{{ lookup('env', 'HOME')}}/.config/calibre/smtp.py"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0644
     backup: yes
-  with_items:
-  - smtp.py
 

@@ -10,4 +10,4 @@
 
   post_tasks:
   - {include: tasks/cisco-vpn-client.yml, tags: vpn}
-  - {include: tasks/erlang.yml, tags: erlang}
+  - {include: tasks/erlang.yml, tags: erlang, distribution_release: xenial}
