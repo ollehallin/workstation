@@ -6,5 +6,3 @@
   - network-manager-vpnc-gnome
   - heimdal-clients
 
-- name: Install Kerberos config
-
