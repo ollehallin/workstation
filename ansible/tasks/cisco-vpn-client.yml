@@ -6,3 +6,10 @@
   - network-manager-vpnc-gnome
   - heimdal-clients
 
+- name: Install $HOME/.krb5.conf.{{ customer1.name }}
+  copy:
+    src: files/customer1/krb5.conf
+    dest: "{{ lookup('env', 'HOME')}}/.krb5.conf.{{ customer1.name }}"
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0644
