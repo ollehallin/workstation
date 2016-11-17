@@ -19,7 +19,7 @@
 
 - name: Customize Calibre SMTP
   template:
-    src: files/calibre-smtp.py
+    src: calibre-smtp.py
     dest: "{{ lookup('env', 'HOME')}}/.config/calibre/smtp.py"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"

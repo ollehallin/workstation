@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#
+# {{ ansible_managed }}
+#
+
 #-------------------------------------------------------------------------------------------
 # Convenience script for running the Gradle wrapper (gradlew).
 # Install it in PATH and it will recursively find gradlew upwards from current directory.

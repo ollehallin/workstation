@@ -44,3 +44,8 @@
     state: link
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
+
+
+- name: Increase inotify watch limit
+  template: src=60-jetbrains.conf dest=/etc/sysctl.d/60-jetbrains.conf
+  notify: sysctl --system

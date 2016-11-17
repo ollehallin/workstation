@@ -32,4 +32,4 @@
     creates: "{{ sdkman_dir }}/var/version"
 
 - name: Install gradlew finder
-  copy: src=gradlew-finder.sh dest=/usr/local/bin/gradle mode=a=rx
+  template: src=gradlew-finder.sh dest=/usr/local/bin/gradle mode=a=rx

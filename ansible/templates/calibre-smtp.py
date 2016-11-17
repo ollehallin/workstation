@@ -1,3 +1,6 @@
+#
+# {{ ansible_managed }}
+#
 # Styr e-postleverans
 
 ### Begin group: DEFAULT

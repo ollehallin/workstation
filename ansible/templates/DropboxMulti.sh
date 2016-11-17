@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
+# {{ ansible_managed }}
+#
+
 REAL_HOME=$HOME
 
 for dropbox in .dropbox-personal .dropbox-crisp; do
