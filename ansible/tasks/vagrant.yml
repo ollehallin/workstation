@@ -1,12 +1,12 @@
 ---
   
-- name: Install Vagrant
+- name: Install Vagrant and system-wide plugins
   package: name={{ item }} state=present
   with_items:
   - vagrant
   - vagrant-cachier
 
-- name: Install Vagrant plugins
+- name: Install user-specific Vagrant plugins
   command: vagrant plugin install {{ item }} creates="{{ lookup('env', 'HOME') }}/.vagrant.d/gems/specifications/{{ item }}-*.gemspec"
   with_items:
   - vagrant-hostmanager
