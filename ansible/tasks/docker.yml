@@ -1,6 +1,6 @@
 ---
 - name: Install docker-cleanup in /etc/cron.daily
-  copy: src=files/docker-cleanup dest=/etc/cron.daily owner=root group=root mode=a=rx
+  copy: src=docker-cleanup dest=/etc/cron.daily owner=root group=root mode=a=rx
 
 - name: Check installed version of docker-compose
   command: docker-compose --version

@@ -22,14 +22,14 @@
     dest: /home/{{ actual_username }}/apps/
     creates: /home/{{ actual_username }}/apps/idea-IU-{{ intellij_version }}
 
-- name: Set correct ownership of files
+- name: Set correct ownership of /home/{{ actual_username }}/apps/idea-IU-{{ intellij_version }}/**
   file:
     path: /home/{{ actual_username }}/apps/idea-IU-{{ intellij_version }}
     recurse: yes
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     
-- name: Install desktop files
+- name: Install jetbrains-idea.desktop
   template:
     src: templates/jetbrains-idea.desktop
     dest: /home/{{ actual_username }}/.local/share/applications/jetbrains-idea.desktop
@@ -37,7 +37,7 @@
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
 
-- name: Create symlink for convenience
+- name: Create /home/{{ actual_username }}/apps/idea symlink for convenience
   file:
     src: /home/{{ actual_username }}/apps/idea-IU-{{ intellij_version }}
     dest: /home/{{ actual_username }}/apps/idea
