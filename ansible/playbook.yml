@@ -27,4 +27,4 @@
   - {include: tasks/aws-cli.yml, tags: aws}
   - {include: tasks/misc.yml, tags: misc}
   - {include: tasks/intellij.yml, tags: intellij}
-  - {include: tasks/nfs-mounts.yml, tags: nfs-mounts}
+  - {include: tasks/nfs-mounts.yml, tags: [fstab, nfs, nfs-mounts]}
