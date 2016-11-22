@@ -10,4 +10,5 @@
 
   post_tasks:
   - {include: tasks/cisco-vpn-client.yml, tags: vpn}
+  - {include: tasks/hipchat.yml, tags: hipchat}
   - {include: tasks/erlang.yml, tags: erlang, distribution_release: xenial}
