@@ -13,3 +13,11 @@
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0644
+
+- name: Install /etc/vpnc/{{ customer1.name }}.conf
+  copy:
+    src: files/customer1/vpnc.conf
+    dest: /etc/vpnc/{{ customer1.name }}.conf
+    owner: root
+    group: root
+    mode: 0600
