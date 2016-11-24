@@ -20,3 +20,12 @@
   tags:
   - shell
   - fish
+
+- name: Create $HOME/bin
+  file:
+    dest: "{{ lookup('env', 'HOME')}}/bin"
+    state: directory
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0755
+

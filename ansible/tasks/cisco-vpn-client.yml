@@ -14,6 +14,14 @@
     group: "{{ actual_username }}"
     mode: 0644
 
+- name: Install $HOME/bin/kinit-{{ customer1.name }}.sh
+  copy:
+    src: files/customer1/kinit.sh
+    dest: "{{ lookup('env', 'HOME')}}/bin/kinit-{{ customer1.name }}.sh"
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0755
+
 - name: Install /etc/vpnc/{{ customer1.name }}.conf
   copy:
     src: files/customer1/vpnc.conf
