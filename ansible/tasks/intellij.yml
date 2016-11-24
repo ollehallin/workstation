@@ -5,8 +5,6 @@
   - apps
   - "Hämtningar"
 
-- set_fact: intellij_archive=ideaIU-{{ intellij_version }}{{ intellij_download_classifier }}.tar.gz
-
 - name: Download {{ intellij_archive }} into /home/{{ actual_username }}/Hämtningar
   get_url:
     url: https://download.jetbrains.com/idea/{{ intellij_archive }}
