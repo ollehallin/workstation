@@ -6,7 +6,6 @@
   - curl
   - dconf-cli
   - emacs24
-  - fish
   - indicator-cpufreq
   - jq
   - keepassx
@@ -14,12 +13,6 @@
   - synaptic
   - unzip
   - wget
-
-- name: Set Fish as login shell
-  user: name={{ actual_username }} shell=/usr/bin/fish
-  tags:
-  - shell
-  - fish
 
 - name: Create $HOME/bin
   file:

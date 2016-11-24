@@ -1,5 +1,4 @@
 ---
-  
 - name: Install OpenJDK
   package: name={{ item }} state=present
   with_items:
@@ -12,24 +11,6 @@
   with_items:
   - npm
   - nodejs-legacy
-
-- set_fact: sdkman_dir={{ lookup('env', 'HOME')}}/.sdkman
-
-- name: Install SDKMAN
-  shell: curl -s https://get.sdkman.io | bash
-  args:
-    creates: "{{ sdkman_dir }}"
-
-- name: chown $HOME/.sdkman
-  file: path={{ sdkman_dir}} owner={{ actual_username }} recurse=yes
-
-- name: chmod +x $HOME/.sdkman/bin
-  file: path={{ sdkman_dir}}/bin mode=0755 recurse=yes
-
-- name: Execute sdkman-init.sh
-  shell: "{{ sdkman_dir }}/bin/sdkman-init.sh"
-  args:
-    creates: "{{ sdkman_dir }}/var/version"
 
 - name: Install gradlew finder
   template: src=gradlew-finder.sh dest=/usr/local/bin/gradle mode=a=rx

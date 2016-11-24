@@ -19,12 +19,13 @@
   - {role: franklinkim.docker, tags: [docker, docker-engine], distribution_release: xenial}
   
   post_tasks:
-  - {include: tasks/docker.yml, tags: docker}
+  - {include: tasks/docker.yml, tags: [docker, codekvast]}
   - {include: tasks/calibre.yml, tags: calibre}
-  - {include: tasks/compilers.yml, tags: compilers}
+  - {include: tasks/compilers.yml, tags: [compilers, codekvast]}
   - {include: tasks/virtualbox.yml, tags: virtualbox, distribution_release: xenial}
   - {include: tasks/vagrant.yml, tags: vagrant}
   - {include: tasks/aws-cli.yml, tags: aws}
+  - {include: tasks/fish.yml, tags: [fish, sdkman]}
   - {include: tasks/misc.yml, tags: misc}
-  - {include: tasks/intellij.yml, tags: intellij}
+  - {include: tasks/intellij.yml, tags: [intellij, codekvast]}
   - {include: tasks/nfs-mounts.yml, tags: [fstab, nfs, nfs-mounts]}
