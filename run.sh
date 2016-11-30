@@ -1,11 +1,12 @@
 #!/bin/bash
 
-declare ansible=$(which ansible)
-declare ohai=$(which ohai)
-if [ "$ansible" == "" -o "$ohai" == "" ]; then
+if [ "$(which ansible)" == "" -o  "$(which ohai)" == "" ]; then
+    grep -q "ppa.launchpad.net/ansible/ansible" /etc/apt/sources.list.d/ansible*.list || {
+        sudo apt install -y software-properties-common
+        sudo apt-add-repository -y ppa:ansible/ansible
+    }
     sudo apt update
-    sudo apt install -y python-pip ohai libssl-dev
-    sudo -H pip install ansible
+    sudo apt install -y ansible ohai libssl-dev
 fi
 
 cd $(dirname $0)/ansible

@@ -16,13 +16,13 @@
   - include: handlers/main.yml
 
   roles:
-  - {role: franklinkim.docker, tags: [docker, docker-engine], distribution_release: xenial}
+  - {role: franklinkim.docker, tags: [docker, docker-engine]}
   
   post_tasks:
   - {include: tasks/docker.yml, tags: [docker, codekvast]}
   - {include: tasks/calibre.yml, tags: calibre}
   - {include: tasks/compilers.yml, tags: [compilers, codekvast]}
-  - {include: tasks/virtualbox.yml, tags: virtualbox, distribution_release: xenial}
+  - {include: tasks/virtualbox.yml, tags: virtualbox}
   - {include: tasks/vagrant.yml, tags: vagrant}
   - {include: tasks/aws-cli.yml, tags: aws}
   - {include: tasks/fish.yml, tags: [fish, sdkman]}
