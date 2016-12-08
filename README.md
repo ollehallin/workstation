@@ -13,40 +13,53 @@ It concentrates on stuff that is difficult to handle for reasons such as
 
 It installs the following tools on my Ubuntu (16.04+) workstation:
 
-- Ansible (reason: standard Ubuntu channel is lagging)
+- Ansible (standard Ubuntu channel is lagging)
 - VirtualBox (custom APT source)
 - Vagrant (convenience)
 - Docker, Docker Machine, Docker Compose (custom APT source, missing .debs)
 - OpenJDK 8 (convenience)
 - Emacs (convenience)
 - Fish (convenience)
-- AWS CLI
-
+- AWS CLI (convenience)
 
 ## How to use
 
-    git clone https://github.com/ollehallin/workstation
-    cd workstation
+    git clone https://github.com/ollehallin/dotfiles
+    cd dotfiles
     ./run.sh [ansible-playbook args]
 
-`run.sh` is a wrapper that
+`run.sh` is a Bash script that
 
-1. Uses `apt` to install `pip`, `ansible` and `ohai` if needed.
+1. Installs `ansible` and `ohai` if needed.
 1. Invokes `ansible-playbook` with the correct arguments.
 
 Do `man ansible-playbook` for more info.
+
+### Ansible Vault
+
+Some of the plays configures services that use secrets (e.g., my AWS credentials). 
+Everything that should be hidden from _your_ eyes is encrypted by means of `ansible-vault` (part of the normal Ansible installation).
+
+I store secret stuff in the encrypted file `ansible/vars/secrets.yml` and in some of the files in `ansible/files`.
+
+`run.sh` expects to find the Ansible Vault password in `$HOME/.ansible-vault-password`.
+ 
+If you fork this project, you'll need to create a new `ansible/vars/secrets.yml` for storing _your_ secrets and store
+_your_ Ansible Vault password in `$HOME/.ansible-vault-password`.
+
+(Or just remove anything that refers to secrets.)
 
 ### Tags
 
 Do `./run.sh --list-tags` to see what tags are defined.
 
-To only install e.g., Docker & OpenJDK you can use
+To only install e.g., Docker you can use
 
-    ./run.sh --tags docker,compilers
+    ./run.sh --tags docker
 
 To skip certain tags you can do e.g.,
 
-    ./run.sh --skip-tags virtualbox,shell
+    ./run.sh --skip-tags virtualbox
 
 ## Third-party roles from ansible-galaxy
 The third-party roles that are needed are defined by `ansible/requirements.yml`
@@ -54,7 +67,7 @@ The third-party roles that are needed are defined by `ansible/requirements.yml`
 When a new role is needed, do like this:
 
 1. `cd ansible`
-1. Edit `requirements.yml`
+1. Edit `requirements.yml` and add the new role.
 1. `ansible-galaxy install -r requirements.yml`
 1. `git add roles/`
 1. `git commit`
