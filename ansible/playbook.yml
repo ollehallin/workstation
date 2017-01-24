@@ -3,8 +3,8 @@
   connection: local
   become: yes
   vars:
-  - docker_compose_version: 1.9.0
-  - docker_machine_version: 0.8.2
+  - docker_compose_version: 1.10.0
+  - docker_machine_version: 0.9.0
   - intellij_version: 171.2272.14
   - intellij_checksum: "sha256:0b8948bf84dfc06f9817ba8907eb36de420e1dae7f10d02275a886c036d157bd"
   - intellij_archive: ideaIU-171.2272.14-no-jdk.tar.gz
