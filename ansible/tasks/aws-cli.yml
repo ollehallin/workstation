@@ -24,3 +24,25 @@
   with_items:
   - { s: 'profile hit', k: region, v: eu-west-1 }
   - { s: 'profile crisp', k: region, v: eu-central-1 }
+  notify: Test AWS CLI
+  loop_control:
+    label: "[{{ item.s }}] {{ item.k }}={{ item.v }}"
+
+- name: Configure AWS CLI credentials
+  ini_file:
+    dest: /home/{{ actual_username }}/.aws/credentials
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0644
+    section: "{{ item.s }}"
+    option: "{{ item.k }}"
+    value: "{{ item.v }}"
+  with_items:
+  - { s: 'hit', k: 'aws_access_key_id', v: "{{ aws.hit.access_key }}" }
+  - { s: 'hit', k: 'aws_secret_access_key', v: "{{ aws.hit.secret_key }}" }
+  - { s: 'crisp', k: 'aws_access_key_id', v: "{{ aws.crisp.access_key }}" }
+  - { s: 'crisp', k: 'aws_secret_access_key', v: "{{ aws.crisp.secret_key }}" }
+  notify: Test AWS CLI
+  loop_control:
+    label: "[{{ item.s }}] {{ item.k }}=xxxxxxxx"
+
