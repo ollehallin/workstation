@@ -22,3 +22,17 @@
     group: "{{ actual_username }}"
     mode: 0755
 
+- name: Create $HOME/.gradle
+  file: path={{ lookup('env', 'HOME') }}/.gradle state=directory
+
+- name: Edit $HOME/.gradle/gradle.properties
+  blockinfile:
+    dest: "{{ lookup('env', 'HOME') }}/.gradle/gradle.properties"
+    create: yes
+    backup: yes
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0640
+    block: |
+      bintrayUser={{ bintray.user }}
+      bintrayKey={{ bintray.key }}
