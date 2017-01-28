@@ -1,48 +1,22 @@
 ---
-- name: Ensure /home/{{ actual_username }}/{{ item }} exists
-  file: path=/home/{{ actual_username }}/{{ item }} state=directory owner={{ actual_username }} group={{ actual_username }}
-  with_items:
-  - apps
-  - "Hämtningar"
-
-- name: Download {{ intellij_archive }} into /home/{{ actual_username }}/Hämtningar
+- name: Download {{ intellij_archive }} into /tmp
   get_url:
     url: https://download.jetbrains.com/idea/{{ intellij_archive }}
     checksum: "{{ intellij_checksum }}"
-    dest: /home/{{ actual_username }}/Hämtningar/{{ intellij_archive }}
-    owner: "{{ actual_username }}"
-    group: "{{ actual_username }}"
+    dest: /tmp/{{ intellij_archive }}
 
-- name: Unpack {{ intellij_archive }} into /home/{{ actual_username }}/apps/
+- name: Unpack {{ intellij_archive }} into /opt/idea-IU-{{ intellij_version }}
   unarchive:
-    src: /home/{{ actual_username }}/Hämtningar/{{ intellij_archive }}
+    src: /tmp/{{ intellij_archive }}
     copy: no
-    dest: /home/{{ actual_username }}/apps/
-    creates: /home/{{ actual_username }}/apps/idea-IU-{{ intellij_version }}
+    dest: /opt/
+    creates: /opt/idea-IU-{{ intellij_version }}
 
-- name: Set correct ownership of /home/{{ actual_username }}/apps/idea-IU-{{ intellij_version }}/**
-  file:
-    path: /home/{{ actual_username }}/apps/idea-IU-{{ intellij_version }}
-    recurse: yes
-    owner: "{{ actual_username }}"
-    group: "{{ actual_username }}"
-    
 - name: Install jetbrains-idea.desktop
   template:
     src: templates/jetbrains-idea.desktop
-    dest: /home/{{ actual_username }}/.local/share/applications/jetbrains-idea.desktop
+    dest: /usr/share/applications/jetbrains-idea.desktop
     mode: 0755
-    owner: "{{ actual_username }}"
-    group: "{{ actual_username }}"
-
-- name: Create /home/{{ actual_username }}/apps/idea symlink for convenience
-  file:
-    src: /home/{{ actual_username }}/apps/idea-IU-{{ intellij_version }}
-    dest: /home/{{ actual_username }}/apps/idea
-    state: link
-    owner: "{{ actual_username }}"
-    group: "{{ actual_username }}"
-
 
 - name: Increase inotify watch limit
   template: src=60-jetbrains.conf dest=/etc/sysctl.d/60-jetbrains.conf
