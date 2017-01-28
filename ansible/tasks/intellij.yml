@@ -12,6 +12,9 @@
     dest: /opt/
     creates: /opt/idea-IU-{{ intellij_version }}
 
+- name: Create symlink /opt/idea -> /opt/idea-IU-{{ intellij_version }} for convenience
+  file: src=/opt/idea-IU-{{ intellij_version }} dest=/opt/idea state=link
+
 - name: Install jetbrains-idea.desktop
   template:
     src: templates/jetbrains-idea.desktop
