@@ -13,7 +13,7 @@
   - vagrant-vbguest
 
 - name: Set correct ownership of $HOME/{{ item }}/**
-  file: dest={{ lookup('env', 'HOME') }}/{{ item }} owner={{ actual_username }} group={{ actual_username }} recurse=yes
+  file: dest={{ lookup('env', 'HOME') }}/{{ item }} owner={{ actual_username }} group={{ actual_username }} state=directory recurse=yes
   with_items:
   - .bundle
   - .vagrant.d
