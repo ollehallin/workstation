@@ -3,8 +3,10 @@
   package: name={{ item }} state=present
   with_items:
   - ruby
+  - ruby-dev
 
-- name: Install Bundler
+- name: Install Ruby Gems
   gem: name={{ item }} state=present
   with_items:
   - bundler
+  - listen
