@@ -26,7 +26,6 @@
   - {include: tasks/fish.yml, tags: [fish, sdkman]}
   - {include: tasks/heroku-toolbelt.yml, tags: [heroku, codekvast]}
   - {include: tasks/intellij.yml, tags: [intellij, codekvast]}
-  - {include: tasks/jekyll.yml, tags: [jekyll, codekvast]}
   - {include: tasks/misc.yml, tags: misc}
   - {include: tasks/nfs-mounts.yml, tags: [fstab, nfs, nfs-mounts]}
   - {include: tasks/vagrant.yml, tags: vagrant}
