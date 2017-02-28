@@ -5,9 +5,9 @@
   vars:
   - docker_compose_version: 1.11.1
   - docker_machine_version: 0.9.0
-  - intellij_version: 171.3224.1
-  - intellij_checksum: "sha256:ff46d4f2e85816edb39c047ff46b78f95cb5fdd1eb2c3a70ad3535b50d67b864"
-  - intellij_archive: ideaIU-{{ intellij_version }}.tar.gz
+  - intellij_version: 171.3566.24
+  - intellij_checksum: "sha256:dc7a94ba96698a3a8028222b5d8f07156f9b8eeec1e878d583f8357905a63338"
+  - intellij_archive: ideaIU-{{ intellij_version }}-no-jdk.tar.gz
 
   vars_files:
   - vars/secrets.yml
@@ -25,7 +25,7 @@
   - {include: tasks/docker.yml, tags: [docker, codekvast]}
   - {include: tasks/fish.yml, tags: [fish, sdkman]}
   - {include: tasks/heroku-toolbelt.yml, tags: [heroku, codekvast]}
-  - {include: tasks/intellij.yml, tags: [intellij, codekvast]}
+  - {include: tasks/intellij.yml, tags: [intellij, idea, codekvast]}
   - {include: tasks/misc.yml, tags: misc}
   - {include: tasks/nfs-mounts.yml, tags: [fstab, nfs, nfs-mounts]}
   - {include: tasks/vagrant.yml, tags: vagrant}
