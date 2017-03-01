@@ -1,11 +1,11 @@
 ---
-- name: Download {{ intellij_archive }} into /tmp
+- name: Download /tmp/{{ intellij_archive }}
   get_url:
     url: https://download.jetbrains.com/idea/{{ intellij_archive }}
     checksum: "{{ intellij_checksum }}"
     dest: /tmp/{{ intellij_archive }}
 
-- name: Unpack {{ intellij_archive }} into /opt/idea-IU-{{ intellij_version }}
+- name: Unpack /tmp/{{ intellij_archive }} into /opt/idea-IU-{{ intellij_version }}
   unarchive:
     src: /tmp/{{ intellij_archive }}
     copy: no
@@ -15,7 +15,7 @@
 - name: Create symlink /opt/idea -> /opt/idea-IU-{{ intellij_version }} for convenience
   file: src=/opt/idea-IU-{{ intellij_version }} dest=/opt/idea state=link
 
-- name: Install jetbrains-idea.desktop
+- name: Create /usr/share/applications/jetbrains-idea.desktop
   template:
     src: templates/jetbrains-idea.desktop
     dest: /usr/share/applications/jetbrains-idea.desktop
