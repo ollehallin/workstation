@@ -1,26 +1,38 @@
 ---
+- set_fact:
+    appsDir: "{{ lookup('env', 'HOME') }}/apps"
+    ideaTargetDir: "{{ lookup('env', 'HOME') }}/apps/idea-IU-{{ intellij_version }}"
+    desktopFile: "{{ lookup('env', 'HOME') }}/.local/share/applications/jetbrains-idea.desktop"
+
 - name: Download /tmp/{{ intellij_archive }}
   get_url:
     url: https://download.jetbrains.com/idea/{{ intellij_archive }}
     checksum: "{{ intellij_checksum }}"
     dest: /tmp/{{ intellij_archive }}
+    timeout: 30
 
-- name: Unpack /tmp/{{ intellij_archive }} into /opt/idea-IU-{{ intellij_version }}
-  unarchive:
-    src: /tmp/{{ intellij_archive }}
-    copy: no
-    dest: /opt/
-    creates: /opt/idea-IU-{{ intellij_version }}
+- name: Create {{ appsDir }}
+  file: path="{{ appsDir }}" state=directory owner={{ actual_username }} group={{ actual_username }}
 
-- name: Create symlink /opt/idea -> /opt/idea-IU-{{ intellij_version }} for convenience
-  file: src=/opt/idea-IU-{{ intellij_version }} dest=/opt/idea state=link
+- name: Unpack /tmp/{{ intellij_archive }} into {{ ideaTargetDir }}
+  unarchive: src=/tmp/{{ intellij_archive }} dest="{{ appsDir}}" creates="{{ ideaTargetDir }}" copy=no
 
-- name: Create /usr/share/applications/jetbrains-idea.desktop
-  template:
-    src: templates/jetbrains-idea.desktop
-    dest: /usr/share/applications/jetbrains-idea.desktop
-    mode: 0755
+- name: Set correct owner to {{ ideaTargetDir}}
+  file: path={{ ideaTargetDir}} owner={{ actual_username }} group={{ actual_username }} recurse=yes
+
+- name: Create symlink {{ appsDir }}/idea -> {{ ideaTargetDir }} for convenience
+  file: src={{ ideaTargetDir }}  dest={{ appsDir }}/idea state=link owner={{ actual_username }} group={{ actual_username }}
+
+- name: Create {{ desktopFile }}
+  template: src=templates/jetbrains-idea.desktop dest={{ desktopFile }} owner={{ actual_username }} group={{ actual_username }} mode=0755
 
 - name: Increase inotify watch limit
   template: src=60-jetbrains.conf dest=/etc/sysctl.d/60-jetbrains.conf
   notify: sysctl --system
+
+- name: Remove old system-wide cruft
+  file: path={{ item }} state=absent
+  with_items:
+  - /usr/share/applications/jetbrains-idea.desktop
+  - /opt/idea-IU-{{ intellij_version }}
+  - /opt/idea
