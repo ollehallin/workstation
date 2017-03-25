@@ -39,7 +39,7 @@ Do `man ansible-playbook` for more info.
 
 ### Ansible Vault
 
-Some of the plays configures services that use secrets (e.g., my AWS credentials). 
+Some of the playbooks configures services that use secrets (e.g., my AWS credentials). 
 Everything that should be hidden from _your_ eyes is encrypted by means of `ansible-vault` (part of the normal Ansible installation).
 
 I store secret stuff in the encrypted file `ansible/vars/secrets.yml` and in some of the files in `ansible/files`.
