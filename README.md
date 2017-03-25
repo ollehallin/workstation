@@ -44,6 +44,8 @@ Everything that should be hidden from _your_ eyes is encrypted by means of `ansi
 
 I store secret stuff in the encrypted file `ansible/vars/secrets.yml` and in some of the files in `ansible/files`.
 
+All variables in `secrets.yml` have names that begin with `secrets.`.
+
 `run.sh` expects to find the Ansible Vault password in `$HOME/.ansible-vault-password`.
  
 If you fork this project, you'll need to create a new `ansible/vars/secrets.yml` for storing _your_ secrets and store
