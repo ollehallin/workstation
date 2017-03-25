@@ -11,7 +11,7 @@ It concentrates on stuff that is difficult to handle for reasons such as
 
 ## Goal
 
-It installs the following tools on my Ubuntu (16.04+) workstation:
+It installs the following tools on my Ubuntu (16.10+) workstation:
 
 - Ansible (standard Ubuntu channel is lagging)
 - VirtualBox (custom APT source)
@@ -19,8 +19,10 @@ It installs the following tools on my Ubuntu (16.04+) workstation:
 - Docker, Docker Machine, Docker Compose (custom APT source, missing .debs)
 - OpenJDK 8 (convenience)
 - Emacs (convenience)
+- Intellij (missing .debs)
 - Fish (convenience)
 - AWS CLI (convenience)
+- Heroku Toolbox (custom APT source)
 
 ## How to use
 
