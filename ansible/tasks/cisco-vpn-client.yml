@@ -12,7 +12,7 @@
     dest: "{{ lookup('env', 'HOME')}}/.krb5.conf.{{ secrets.customer1.name }}"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
-    mode: 0644
+    mode: 0600
 
 - name: Install $HOME/bin/kinit-{{ secrets.customer1.name }}.sh
   copy:
@@ -20,7 +20,7 @@
     dest: "{{ lookup('env', 'HOME')}}/bin/kinit-{{ secrets.customer1.name }}.sh"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
-    mode: 0755
+    mode: 0700
 
 - name: Install /etc/vpnc/{{ secrets.customer1.name }}.conf
   copy:

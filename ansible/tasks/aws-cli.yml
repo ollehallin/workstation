@@ -33,7 +33,7 @@
     dest: /home/{{ actual_username }}/.aws/credentials
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
-    mode: 0644
+    mode: 0600
     section: "{{ item.s }}"
     option: "{{ item.k }}"
     value: "{{ item.v }}"

@@ -23,6 +23,5 @@
     dest: "{{ lookup('env', 'HOME')}}/.config/calibre/smtp.py"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
-    mode: 0644
+    mode: 0600
     backup: yes
-

@@ -32,7 +32,7 @@
     backup: yes
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
-    mode: 0640
+    mode: 0600
     block: |
       bintrayUser={{ secrets.bintray.user }}
       bintrayKey={{ secrets.bintray.key }}
