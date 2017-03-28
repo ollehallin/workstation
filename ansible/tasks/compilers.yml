@@ -27,6 +27,12 @@
   - nodejs
   - build-essential
 
+- name: Remove phantomjs-prebuilt from /usr/local
+  file: path={{ item }} state=absent
+  with_items:
+  - /usr/local/lib/node_modules/phantomjs-prebuilt
+  - /usr/local/bin/phantomjs
+
 - name: Install PhantomJS
   npm: name=phantomjs-prebuilt global=yes
 
