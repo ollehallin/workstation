@@ -24,6 +24,7 @@
   - {include: tasks/compilers.yml, tags: [compilers, codekvast]}
   - {include: tasks/docker.yml, tags: [docker, codekvast]}
   - {include: tasks/fish.yml, tags: [fish, sdkman]}
+  - {include: tasks/google-chrome.yml, tags: [chrome, google-chrome]}
   - {include: tasks/heroku-toolbelt.yml, tags: [heroku, codekvast]}
   - {include: tasks/intellij.yml, tags: [intellij, idea, codekvast]}
   - {include: tasks/misc.yml, tags: misc}
