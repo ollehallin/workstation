@@ -15,6 +15,9 @@
   - unzip
   - wget
 
+- name: Start sshd
+  service: name=sshd state=started enabled=yes
+
 - name: Create $HOME/bin
   file:
     dest: "{{ lookup('env', 'HOME')}}/bin"
