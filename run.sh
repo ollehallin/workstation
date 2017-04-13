@@ -21,3 +21,4 @@ sudo ansible-playbook --vault-password-file=$HOME/.ansible-vault-password -i inv
 # These are hard to set via Ansible. Do it in a simpler way...
 dconf write /org/gnome/settings-daemon/plugins/media-keys/screensaver "'<Ctrl>section'"
 dconf write /org/gnome/desktop/wm/preferences/mouse-button-modifier "'<Alt><Super>'"
+dconf write /org/compiz/profiles/unity/plugins/unityshell/show-launcher "'<Super>'"
