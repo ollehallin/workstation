@@ -31,3 +31,4 @@
   - {include: tasks/nfs-mounts.yml, tags: [fstab, nfs, nfs-mounts]}
   - {include: tasks/vagrant.yml, tags: vagrant}
   - {include: tasks/virtualbox.yml, tags: virtualbox}
+  - {include: tasks/yarn.yml, tags: yarn}
