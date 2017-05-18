@@ -40,6 +40,8 @@
   with_items:
   - { s: 'hit', k: 'aws_access_key_id', v: "{{ secrets.aws.hit.access_key }}" }
   - { s: 'hit', k: 'aws_secret_access_key', v: "{{ secrets.aws.hit.secret_key }}" }
+  - { s: 'codekvast', k: 'aws_access_key_id', v: "{{ secrets.aws.hit.access_key }}" }
+  - { s: 'codekvast', k: 'aws_secret_access_key', v: "{{ secrets.aws.hit.secret_key }}" }
   - { s: 'crisp', k: 'aws_access_key_id', v: "{{ secrets.aws.crisp.access_key }}" }
   - { s: 'crisp', k: 'aws_secret_access_key', v: "{{ secrets.aws.crisp.secret_key }}" }
   notify: Test AWS CLI
