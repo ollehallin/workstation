@@ -17,3 +17,5 @@
   with_items:
   - .bundle
   - .vagrant.d
+  - .gem
+
