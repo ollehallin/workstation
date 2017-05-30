@@ -3,11 +3,11 @@
   connection: local
   become: yes
   vars:
-  - docker_compose_version: 1.11.2
-  - docker_machine_version: 0.10.0
-  - intellij_version: 172.1909.2
-  - intellij_checksum: "sha256:c70a44d3c16728a56c5926f15a6cf20223e5274d40496666c061de17aab5bb03"
-  - intellij_archive: ideaIU-172.1909.2-no-jdk.tar.gz
+  - docker_compose_version: 1.13.0
+  - docker_machine_version: 0.11.0
+  - intellij_version: 172.2465.6
+  - intellij_checksum: "sha256:5d999b9c3ba71e8301ac3843b70a5e2ac19b846233052cb4af20b5e1342ac999"
+  - intellij_archive: ideaIU-172.2465.6-no-jdk.tar.gz
 
   vars_files:
   - vars/secrets.yml
