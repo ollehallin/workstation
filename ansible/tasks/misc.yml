@@ -9,6 +9,7 @@
   - indicator-cpufreq
   - jq
   - keepassx
+  - libimage-exiftool-perl
   - nautilus-dropbox
   - openssh-server
   - slack-desktop
