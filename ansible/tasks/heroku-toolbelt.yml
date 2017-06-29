@@ -1,4 +1,8 @@
 ---
+- name: Set root as owner to ~/.netrc
+  file: path=~/.netrc state=touch owner=root
+  changed_when: False
+
 - name: Install Heroku APT key
   apt_key: url=https://cli-assets.heroku.com/apt/release.key state=present
 
@@ -10,3 +14,8 @@
 
 - name: Install Heroku Toolbelt
   package: name=heroku state=present
+
+- name: Reset ownership and mode of ~/.netrc
+  file: path=~/.netrc owner={{ actual_username }} group={{ actual_username }} mode=0600
+  changed_when: False
+

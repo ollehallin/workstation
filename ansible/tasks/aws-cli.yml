@@ -3,6 +3,7 @@
   with_items:
   - awscli
   - python-boto
+  - s3cmd
 
 - name: Create AWS config directory
   file:
