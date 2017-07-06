@@ -14,6 +14,11 @@
   handlers:
   - include: handlers/main.yml
 
+  pre_tasks:
+  - name: Set root as owner to ~/.netrc
+    file: path=~/.netrc state=touch owner=root group=root
+    changed_when: False
+
   roles:
   - {role: franklinkim.docker, tags: [docker, docker-engine]}
   
@@ -31,3 +36,7 @@
   - {include: tasks/vagrant.yml, tags: vagrant}
   - {include: tasks/virtualbox.yml, tags: virtualbox}
   - {include: tasks/yarn.yml, tags: yarn}
+
+  - name: Reset ownership and mode of ~/.netrc
+    file: path=~/.netrc owner={{ actual_username }} group={{ actual_username }} mode=0600
+    changed_when: False
