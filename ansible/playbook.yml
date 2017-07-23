@@ -5,19 +5,14 @@
   vars:
   - docker_compose_version: 1.13.0
   - docker_machine_version: 0.11.0
-  - intellij_version: 172.3198.6
-  - intellij_checksum: "sha256:47afb5ac71026f4c688211f97062b9fddbf076024b1036c879921c2bf442ec2c"
-  - intellij_archive: ideaIU-172.3198.6-no-jdk.tar.gz
+  - intellij_version: 172.3317.76
+  - intellij_checksum: "sha256:96eb6101b1bf4582b40cc0b476f97cba8b37becfd07a2221a7119bb2bbc14c4f"
+  - intellij_archive: ideaIU-2017.2-no-jdk.tar.gz
   vars_files:
   - vars/secrets.yml
 
   handlers:
   - include: handlers/main.yml
-
-  pre_tasks:
-  - name: Set root as owner to ~/.netrc
-    file: path=~/.netrc state=touch owner=root group=root
-    changed_when: False
 
   roles:
   - {role: franklinkim.docker, tags: [docker, docker-engine]}
@@ -36,7 +31,3 @@
   - {include: tasks/vagrant.yml, tags: vagrant}
   - {include: tasks/virtualbox.yml, tags: virtualbox}
   - {include: tasks/yarn.yml, tags: yarn}
-
-  - name: Reset ownership and mode of ~/.netrc
-    file: path=~/.netrc owner={{ actual_username }} group={{ actual_username }} mode=0600
-    changed_when: False

@@ -16,7 +16,9 @@ if [ "$(which ansible)" == "" -o  "$(which ohai)" == "" ]; then
 fi
 
 cd $(dirname $0)/ansible
+sudo chown root.root ~/.netrc
 sudo ansible-playbook --vault-password-file=$HOME/.ansible-vault-password -i inventory ${PLAYBOOK:-playbook.yml} -e "actual_username=${USER}" $*
+sudo chown ${USER}.${USER} ~/.netrc
 
 # These are hard to set via Ansible. Do it in a simpler way...
 gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "'<Ctrl>section'"

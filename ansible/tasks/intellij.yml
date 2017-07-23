@@ -30,9 +30,9 @@
   template: src=60-jetbrains.conf dest=/etc/sysctl.d/60-jetbrains.conf
   notify: sysctl --system
 
-- name: Remove old system-wide cruft
-  file: path={{ item }} state=absent
-  with_items:
-  - /usr/share/applications/jetbrains-idea.desktop
-  - /opt/idea-IU-{{ intellij_version }}
-  - /opt/idea
+# - name: Remove old system-wide cruft
+#   file: path={{ item }} state=absent
+#   with_items:
+#   - /usr/share/applications/jetbrains-idea.desktop
+#   - /opt/idea-IU-{{ intellij_version }}
+#   - /opt/idea
