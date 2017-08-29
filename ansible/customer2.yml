@@ -1,0 +1,12 @@
+---
+- hosts: all
+  connection: local
+  become: yes
+  vars_files:
+  - vars/secrets.yml
+
+  handlers:
+  - include: handlers/main.yml
+
+  post_tasks:
+  - {include: tasks/cisco-anyconnect-client.yml, tags: [vpn]}

@@ -1,0 +1,19 @@
+---
+- name: Install Cisco AnyConnect client
+  package: name={{ item }} state=present
+  notify: systemctl daemon-reload
+  with_items:
+  - network-manager-openconnect
+
+- name: Execute vpnsetup.sh
+  script: files/customer2/vpnsetup.sh
+  args:
+    creates: /opt/cisco/anyconnect/bin/vpn
+  notify: systemctl daemon-reload
+
+- name: Define Fish environment
+  shell: /usr/bin/fish --command="set -Ux {{ item.k }} {{ item.k }}"
+  become_user: "{{ actual_username }}"
+  with_items: "{{ secrets.customer2.environment }}"
+  loop_control:
+    label: "set -Ux {{ item.k }} xxx"

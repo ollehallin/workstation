@@ -7,3 +7,6 @@
   with_items:
   - hit
   - crisp
+
+- name: systemctl daemon-reload
+  shell: systemctl daemon-reload
