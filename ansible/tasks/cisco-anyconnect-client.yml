@@ -12,7 +12,7 @@
   notify: systemctl daemon-reload
 
 - name: Define Fish environment
-  shell: /usr/bin/fish --command="set -Ux {{ item.k }} {{ item.k }}"
+  shell: /usr/bin/fish --command="set -Ux {{ item.k }} {{ item.v }}"
   become_user: "{{ actual_username }}"
   with_items: "{{ secrets.customer2.environment }}"
   loop_control:
