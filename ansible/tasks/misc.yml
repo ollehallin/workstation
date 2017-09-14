@@ -45,3 +45,6 @@
     block: |
       bintrayUser={{ secrets.bintray.user }}
       bintrayKey={{ secrets.bintray.key }}
+      {{ secrets.customer2.name }}ArtifactoryUser={{ secrets.customer2.artifactory.user}}
+      {{ secrets.customer2.name }}ArtifactoryPwd={{ secrets.customer2.artifactory.pwd}}
+      {{ secrets.customer2.name }}ArtifactoryContext={{ secrets.customer2.artifactory.context}}
