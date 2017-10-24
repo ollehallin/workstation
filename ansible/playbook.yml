@@ -5,9 +5,9 @@
   vars:
   - docker_compose_version: 1.15.0
   - docker_machine_version: 0.12.2
-  - intellij_version: 173.2941.3
-  - intellij_checksum: "sha256:9cb7711bb0350b91bfcabeb150e2041d1b96ed35d740bab3820be2b5222af00e"
-  - intellij_archive: ideaIU-173.2941.3-no-jdk.tar.gz
+  - intellij_version: 173.3302.5
+  - intellij_checksum: "sha256:72e7c6717a51e3dffbe063d43c4428339f921e75003fa9d43bba07849613765c"
+  - intellij_archive: ideaIU-173.3302.5-no-jdk.tar.gz
   vars_files:
   - vars/secrets.yml
 
@@ -15,7 +15,7 @@
   - include: handlers/main.yml
 
   roles:
-  - {role: franklinkim.docker, tags: [docker, docker-engine]}
+  - {role: franklinkim.docker, distribution_release: zesty, tags: [docker, docker-engine]}
   
   post_tasks:
   - {include: tasks/aws-cli.yml, tags: aws}

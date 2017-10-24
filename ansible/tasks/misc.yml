@@ -6,7 +6,7 @@
   - compizconfig-settings-manager
   - curl
   - dconf-cli
-  - emacs24
+  - emacs25
   - encfs
   - gnome-gmail
   - indicator-cpufreq
