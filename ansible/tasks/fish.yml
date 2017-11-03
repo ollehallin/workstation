@@ -38,6 +38,7 @@
     src: files/fish/{{ item }}
     dest: "{{ fish_config_dir }}/{{ item }}"
   with_items:
+  - completions/aws.fish
   - completions/docker.fish
   - completions/sdk.fish
   - functions/fish_prompt.fish
