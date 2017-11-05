@@ -15,7 +15,7 @@
   - include: handlers/main.yml
 
   roles:
-  - {role: franklinkim.docker, distribution_release: zesty, tags: [docker, docker-engine]}
+  - {role: franklinkim.docker, tags: [docker, docker-engine]}
   
   post_tasks:
   - {include: tasks/aws-cli.yml, tags: aws}
