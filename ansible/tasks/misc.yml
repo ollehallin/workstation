@@ -25,14 +25,19 @@
 
 - name: Create $HOME/bin
   file:
-    dest: "{{ lookup('env', 'HOME')}}/bin"
+    path: "{{ lookup('env', 'HOME')}}/bin"
     state: directory
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0755
 
 - name: Create $HOME/.gradle
-  file: path={{ lookup('env', 'HOME') }}/.gradle state=directory owner={{ actual_username }} group={{ actual_username }} mode=755
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.gradle"
+    state: directory
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 755
 
 - name: Edit $HOME/.gradle/gradle.properties
   blockinfile:

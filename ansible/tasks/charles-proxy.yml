@@ -1,0 +1,21 @@
+---
+
+- name: Add Charles Proxy APT keys
+  apt_key: id={{ item }} keyserver=hkp://pgp.mit.edu:80
+  with_items:
+  - 1AD28806
+
+- name: Add Charles ProxyAPT repository
+  apt_repository: repo="deb https://www.charlesproxy.com/packages/apt/ charles-proxy main" filename=charles.list
+
+- name: Install Charles Proxy
+  package: name=charles-proxy state=present
+
+- name: Install $HOME/.charles.config (if missing)
+  template:
+    src: charles.config
+    dest: "{{ lookup('env', 'HOME') }}/.charles.config"
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0600
+    force: no

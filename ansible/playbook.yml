@@ -20,6 +20,7 @@
   post_tasks:
   - {include: tasks/aws-cli.yml, tags: aws}
   - {include: tasks/calibre.yml, tags: calibre}
+  - {include: tasks/charles-proxy.yml, tags: [charles-proxy, charles]}
   - {include: tasks/compilers.yml, tags: [compilers, codekvast]}
   - {include: tasks/docker.yml, tags: [docker, codekvast]}
   - {include: tasks/fish.yml, tags: [fish, sdkman]}
