@@ -9,4 +9,5 @@
   - include: handlers/main.yml
 
   post_tasks:
-  - {include: tasks/cisco-anyconnect-client.yml, tags: [vpn]}
+  - {include: tasks/cisco-anyconnect-client.yml, tags: vpn}
+  - {include: tasks/play.yml, play_version: '2.2.6', tags: play}

@@ -1,0 +1,24 @@
+---
+- set_fact:
+    appsDir: "{{ lookup('env', 'HOME') }}/apps"
+    playArchive: "play-{{ play_version }}.zip"
+    playTargetDir: "{{ lookup('env', 'HOME') }}/apps/play-{{ play_version }}"
+
+- name: "Download https://downloads.typesafe.com/play/{{ play_version }}/{{ playArchive }} to /tmp/{{ playArchive }}"
+  get_url:
+    url: https://downloads.typesafe.com/play/{{ play_version }}/{{ playArchive }}
+    dest: /tmp/{{ playArchive }}
+    timeout: 30
+
+- name: Create {{ appsDir }}
+  file: path="{{ appsDir }}" state=directory owner={{ actual_username }} group={{ actual_username }}
+
+- name: Unpack /tmp/{{ playArchive }} into {{ playTargetDir }}
+  unarchive: src=/tmp/{{ playArchive }} dest="{{ appsDir}}" creates="{{ playTargetDir }}" copy=no
+
+- name: Set correct owner to {{ playTargetDir}}
+  file: path={{ playTargetDir}} owner={{ actual_username }} group={{ actual_username }} recurse=yes
+
+- name: Create symlink {{ appsDir }}/play -> {{ playTargetDir }} for convenience
+  file: src={{ playTargetDir }}  dest={{ appsDir }}/play state=link owner={{ actual_username }} group={{ actual_username }}
+
