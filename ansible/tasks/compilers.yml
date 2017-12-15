@@ -16,10 +16,10 @@
   package: name=nodejs-legacy state=absent
 
 - name: Fetch NodeJS APT source script
-  get_url: url=https://deb.nodesource.com/setup_6.x dest=/tmp/nodesource_apt_source.sh mode=0755
+  get_url: url=https://deb.nodesource.com/setup_8.x dest=/tmp/nodesource_apt_source.sh mode=0755
 
 - name: Execute NodeJS APT source script
-  shell: /tmp/nodesource_apt_source.sh creates=/etc/apt/sources.list.d/nodesource.list
+  shell: /tmp/nodesource_apt_source.sh # creates=/etc/apt/sources.list.d/nodesource.list
 
 - name: Install NodeJS
   package: name={{ item }} state=latest

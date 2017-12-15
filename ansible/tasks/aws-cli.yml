@@ -4,6 +4,7 @@
   - awscli
   - aws-shell
   - python-boto
+  - python-boto3
   - s3cmd
 
 - name: Create AWS config directory
