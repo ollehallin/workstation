@@ -6,9 +6,9 @@
   - vars/secrets.yml
 
   handlers:
-  - include: handlers/main.yml
+  - import_tasks: handlers/main.yml
 
   post_tasks:
-  - {include: tasks/cisco-vpn-client.yml, tags: [vpn, vpnc]}
-  - {include: tasks/hipchat.yml, tags: hipchat}
-  - {include: tasks/erlang.yml, tags: erlang, distribution_release: xenial}
+  - {import_tasks: tasks/cisco-vpn-client.yml, tags: [vpn, vpnc]}
+  - {import_tasks: tasks/hipchat.yml, tags: hipchat}
+  - {import_tasks: tasks/erlang.yml, tags: erlang, distribution_release: xenial}

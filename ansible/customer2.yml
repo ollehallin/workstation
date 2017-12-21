@@ -6,8 +6,8 @@
   - vars/secrets.yml
 
   handlers:
-  - include: handlers/main.yml
+  - import_tasks: handlers/main.yml
 
   post_tasks:
-  - {include: tasks/cisco-anyconnect-client.yml, tags: vpn}
-  - {include: tasks/play.yml, play_version: '2.2.6', tags: play}
+  - {import_tasks: tasks/cisco-anyconnect-client.yml, tags: vpn}
+  - {import_tasks: tasks/play.yml, play_version: '2.2.6', tags: play}
