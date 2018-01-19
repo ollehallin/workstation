@@ -7,7 +7,9 @@
 
   handlers:
   - import_tasks: handlers/main.yml
+  - import_tasks: handlers/customer2/main.yml
 
   post_tasks:
-  - {import_tasks: tasks/cisco-anyconnect-client.yml, tags: vpn}
+  - {import_tasks: tasks/customer2/cisco-anyconnect-client.yml, tags: vpn}
+  - {import_tasks: tasks/customer2/apache.yml, tags: apache}
   - {import_tasks: tasks/play.yml, play_version: '2.2.6', tags: play}
