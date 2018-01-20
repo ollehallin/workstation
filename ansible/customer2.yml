@@ -4,6 +4,8 @@
   become: yes
   vars_files:
   - vars/secrets.yml
+  vars:
+  - play_version: '2.2.6'
 
   handlers:
   - import_tasks: handlers/main.yml
@@ -12,4 +14,4 @@
   post_tasks:
   - {import_tasks: tasks/customer2/cisco-anyconnect-client.yml, tags: vpn}
   - {import_tasks: tasks/customer2/apache.yml, tags: apache}
-  - {import_tasks: tasks/play.yml, play_version: '2.2.6', tags: play}
+  - {import_tasks: tasks/play.yml, tags: play}
