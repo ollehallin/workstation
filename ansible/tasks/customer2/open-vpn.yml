@@ -1,0 +1,9 @@
+---
+- name: Install network-manager-openvpn-gnome
+  package: name={{ item }} state=present
+  notify: systemctl daemon-reload
+  with_items:
+  - network-manager-openvpn-gnome
+
+- debug: msg="Define the VPN to {{ secrets.customer2.name }} by importing heimdall.ovpn into Gnome Network Manager"
+
