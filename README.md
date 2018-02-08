@@ -37,19 +37,16 @@ It installs the following tools on my Ubuntu (16.10+) workstation:
 
 Do `man ansible-playbook` for more info.
 
-### Ansible Vault
+### git-crypt
 
 Some of the playbooks configures services that use secrets (e.g., my AWS credentials). 
-Everything that should be hidden from _your_ eyes is encrypted by means of `ansible-vault` (part of the normal Ansible installation).
+Everything that should be hidden from _your_ eyes is encrypted by means of `git-crypt`.
 
 I store secret stuff in the encrypted file `ansible/vars/secrets.yml` and in some of the files in `ansible/files`.
 
 All variables in `secrets.yml` have names that begin with `secrets.`.
 
-`run.sh` expects to find the Ansible Vault password in `$HOME/.ansible-vault-password`.
- 
-If you fork this project, you'll need to create a new `ansible/vars/secrets.yml` for storing _your_ secrets and store
-_your_ Ansible Vault password in `$HOME/.ansible-vault-password`.
+If you fork this project, you'll need to create a new `ansible/vars/secrets.yml` for storing _your_ secrets and do `git-crypt init`.
 
 (Or just remove anything that refers to secrets.)
 
