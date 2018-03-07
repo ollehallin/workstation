@@ -5,7 +5,7 @@
   with_items:
   - 1AD28806
 
-- name: Add Charles ProxyAPT repository
+- name: Add Charles Proxy APT repository
   apt_repository: repo="deb https://www.charlesproxy.com/packages/apt/ charles-proxy main" filename=charles.list
 
 - name: Install Charles Proxy
