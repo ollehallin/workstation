@@ -4,6 +4,6 @@
   notify: systemctl daemon-reload
   with_items:
   - network-manager-openvpn-gnome
+  - network-manager-openconnect-gnome
 
 - debug: msg="Define the VPN to {{ secrets.customer2.name | capitalize }} by importing {{ pwd }}/files/customer2/heimdall.ovpn into Gnome Network Manager -> VPN"
-
