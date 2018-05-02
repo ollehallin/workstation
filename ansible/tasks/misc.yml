@@ -15,11 +15,15 @@
   - libimage-exiftool-perl
   - nautilus-dropbox
   - openssh-server
-  - slack-desktop
   - synaptic
   - tree
   - unzip
   - wget
+
+- name: Install Slack
+  shell: snap install --classic {{ item }}
+  with_items:
+  - slack
 
 - name: Start sshd
   service: name=sshd state=started enabled=yes

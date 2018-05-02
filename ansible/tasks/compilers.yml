@@ -1,10 +1,20 @@
 ---
-- name: Install OpenJDK
+- name: Install OpenJDK 8
   package: name={{ item }} state=present
   with_items:
   - openjdk-8-jdk
   - openjdk-8-source
   - openjdk-8-doc
+
+- name: Uninstall OpenJDK 11
+  package: name={{ item }} state=absent
+  with_items:
+  - openjdk-11-jdk
+  - openjdk-11-jdk-headless
+  - openjdk-11-jre
+  - openjdk-11-jre-headless
+  - openjdk-11-source
+  - openjdk-11-doc
 
 - name: Install git and curl
   package: name={{ item }} state=present
