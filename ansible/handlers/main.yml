@@ -11,3 +11,6 @@
 
 - name: systemctl daemon-reload
   shell: systemctl daemon-reload
+
+- name: Relogin needed
+  debug: msg='You need to logout and login'

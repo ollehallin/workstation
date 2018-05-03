@@ -14,21 +14,8 @@
   handlers:
   - import_tasks: handlers/main.yml
 
-  pre_tasks:
-  - name: "Install mkpasswd (and other stuff from the whois package)"
-    package: name=whois state=present
-
-  - name: "Make the root password"
-    shell: echo {{ secrets.root.password }} | mkpasswd --method=sha-512 --stdin
-    register: p
-
-  - name: "Set the root password"
-    user: name=root system=yes password="{{ p.stdout }}"
-
-  roles:
-  - {role: franklinkim.docker, tags: [docker, docker-engine], distribution_release: zesty}
-  
-  post_tasks:
+  tasks:
+  - {import_tasks: tasks/root-password.yml, tags: aws}
   - {import_tasks: tasks/aws-cli.yml, tags: aws}
   - {import_tasks: tasks/calibre.yml, tags: calibre}
   - {import_tasks: tasks/charles-proxy.yml, tags: [charles-proxy, charles]}
