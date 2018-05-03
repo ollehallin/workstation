@@ -2,7 +2,7 @@
 - name: Install misc utilities
   package: name={{ item }} state=present
   with_items:
-  - ack
+  # - ack
   - compizconfig-settings-manager
   - curl
   - dconf-cli
