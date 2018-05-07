@@ -18,6 +18,7 @@ if [ "$(which git-crypt)" == "" ]; then
 fi
 
 cd $(dirname $0)/ansible
+touch ~/.netrc
 sudo chown root.root ~/.netrc
 sudo ansible-playbook -i inventory ${PLAYBOOK:-playbook.yml} -e "pwd=${PWD}" -e "actual_username=${USER}" $*
 sudo chown ${USER}.${USER} ~/.netrc
@@ -25,3 +26,4 @@ sudo chown ${USER}.${USER} ~/.netrc
 # These are hard to set via Ansible. Do it in a simpler way...
 # gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "'<Ctrl>section'"
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "'<Alt><Super>'"
+gsettings set org.gnome.desktop.wm.preferences button-layout 'close,maximize,minimize:'
