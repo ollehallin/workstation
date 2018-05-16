@@ -12,5 +12,8 @@
 - name: systemctl daemon-reload
   shell: systemctl daemon-reload
 
+- name: systemctl restart network-manager
+  shell: systemctl restart network-manager
+
 - name: Relogin needed
   debug: msg='You need to logout and login'
