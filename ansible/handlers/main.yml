@@ -17,3 +17,6 @@
 
 - name: Relogin needed
   debug: msg='You need to logout and login'
+
+- name: update-ca-certificates
+  shell: update-ca-certificates
