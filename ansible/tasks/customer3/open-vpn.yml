@@ -10,26 +10,29 @@
 - name: Create /etc/openvpn/client/{{ secrets.customer3.name }}
   file: path=/etc/openvpn/client/{{ secrets.customer3.name }} state=directory
 
-- name: Install /etc/openvpn/client/{{ secrets.customer3.name }}-ca.crt
+- name: Install /etc/openvpn/client/{{ secrets.customer3.name }}/{{ secrets.customer3.name }}-ca.crt
   copy:
-    src: customer3/customer-ca.crt
+    src: customer3/vpn-ca.crt
     dest: /etc/openvpn/client/{{ secrets.customer3.name }}/{{ secrets.customer3.name }}-ca.crt
     owner: root
     group: root
     mode: 0644
+  notify: systemctl restart network-manager
 
-- name: Install /etc/openvpn/client/{{ secrets.customer3.ldap_username }}.crt
+- name: Install /etc/openvpn/client/{{ secrets.customer3.name }}/{{ secrets.customer3.ldap_username }}.crt
   copy:
     src: customer3/user.crt
     dest: /etc/openvpn/client/{{ secrets.customer3.name }}/{{ secrets.customer3.ldap_username }}.crt
     owner: root
     group: root
     mode: 0644
+  notify: systemctl restart network-manager
 
-- name: Install /etc/openvpn/client/{{ secrets.customer3.ldap_username }}.key
+- name: Install /etc/openvpn/client/{{ secrets.customer3.name }}/{{ secrets.customer3.ldap_username }}.key
   copy:
     src: customer3/user.key
     dest: /etc/openvpn/client/{{ secrets.customer3.name }}/{{ secrets.customer3.ldap_username }}.key
     owner: root
     group: root
     mode: 0644
+  notify: systemctl restart network-manager
