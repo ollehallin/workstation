@@ -27,3 +27,5 @@ sudo chown ${USER}.${USER} ~/.netrc
 # gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "'<Ctrl>section'"
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "'<Alt><Super>'"
 gsettings set org.gnome.desktop.wm.preferences button-layout 'close,maximize,minimize:'
+gsettings set org.gnome.desktop.interface clock-show-date true
+gsettings set org.gnome.desktop.interface clock-show-seconds true
