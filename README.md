@@ -30,7 +30,7 @@ It installs the following tools on my Ubuntu (16.10+) workstation:
     cd dotfiles
     ./run.sh [ansible-playbook args]
 
-`run.sh` is a Bash script that
+`just-fucking-install-it.sh` is a Bash script that
 
 1. Installs `ansible` and `ohai` if needed.
 1. Invokes `ansible-playbook` with the correct arguments.
@@ -52,7 +52,7 @@ If you fork this project, you'll need to create a new `ansible/vars/secrets.yml`
 
 ### Tags
 
-Do `./run.sh --list-tags` to see what tags are defined.
+Do `./just-fucking-install-it.sh --list-tags` to see what tags are defined.
 
 To only install e.g., Docker you can use
 
