@@ -28,7 +28,7 @@ It installs the following tools on my Ubuntu (16.10+) workstation:
 
     git clone https://github.com/ollehallin/dotfiles
     cd dotfiles
-    ./run.sh [ansible-playbook args]
+    ./just-fucking-install-it.sh [ansible-playbook args]
 
 `just-fucking-install-it.sh` is a Bash script that
 
@@ -56,11 +56,11 @@ Do `./just-fucking-install-it.sh --list-tags` to see what tags are defined.
 
 To only install e.g., Docker you can use
 
-    ./run.sh --tags docker
+    ./just-fucking-install-it.sh --tags docker
 
 To skip certain tags you can do e.g.,
 
-    ./run.sh --skip-tags virtualbox
+    ./just-fucking-install-it.sh --skip-tags virtualbox
 
 ## Third-party roles from ansible-galaxy
 The third-party roles that are needed are defined by `ansible/requirements.yml`
