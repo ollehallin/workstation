@@ -7,7 +7,7 @@ It concentrates on stuff that is difficult to handle for reasons such as
 - Not present in standard Ubuntu channel
 - The standard Ubuntu channel is lagging
 - Is not packaged as a .deb
-- Is convenient to get in one command
+- Is inconvenient to get in one command
 
 ## Goal
 
@@ -23,6 +23,11 @@ It installs the following tools on my Ubuntu (16.10+) workstation:
 - Fish (convenience)
 - AWS CLI (convenience)
 - Heroku Toolbox (custom APT source)
+- Calibre e-book library manager (with support for emailing to my Kindle)
+- Spotify (custom APT source)
+- OpenVPN (with customers' config)
+- Charles proxy (with my private license)
+- Various standard utilities (convenience)
 
 ## How to use
 
@@ -32,8 +37,9 @@ It installs the following tools on my Ubuntu (16.10+) workstation:
 
 `just-fucking-install-it.sh` is a Bash script that
 
-1. Installs `ansible` and `ohai` if needed.
-1. Invokes `ansible-playbook` with the correct arguments.
+1. Installs `ansible`, `ohai` and `git-crypt` if needed.
+2. Runs `git-crypt unlock` if first time.
+3. Invokes `ansible-playbook` with the correct arguments.
 
 Do `man ansible-playbook` for more info.
 
