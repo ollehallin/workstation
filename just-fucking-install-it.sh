@@ -15,6 +15,9 @@ fi
 if [ "$(which git-crypt)" == "" ]; then
     echo "Installing git-crypt..."
     sudo apt install git-crypt
+
+    echo "Running git-crypt unlock..."
+    git-crypt unlock
 fi
 
 cd $(dirname $0)/ansible
