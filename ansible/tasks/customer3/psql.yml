@@ -1,5 +1,0 @@
----
-- name: Install PSQL CLI
-  package: name={{ item }} state=present
-  with_items:
-  - postgresql-client

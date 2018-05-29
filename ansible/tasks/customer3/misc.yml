@@ -1,0 +1,35 @@
+---
+- name: Create /usr/share/ca-certificates/{{ secrets.customer3.name }}/
+  file: path=/usr/share/ca-certificates/{{ secrets.customer3.name }} state=directory
+
+- name: Install /usr/share/ca-certificates/{{ secrets.customer3.name }}/{{ secrets.customer3.name }}_ca.crt
+  copy:
+    src: customer3/web-ca.crt
+    dest: /usr/share/ca-certificates/{{ secrets.customer3.name }}/{{ secrets.customer3.name }}_ca.crt
+    owner: root
+    group: root
+    mode: 0644
+  notify: update-ca-certificates
+
+- name: Install PSQL CLI
+  package: name={{ item }} state=present
+  with_items:
+  - postgresql-client
+
+- name: Install kubectl
+  command: snap install kubectl --classic
+  args:
+    creates: /snap/bin/kubectl
+
+- name: Create $HOME/.kube
+  file:
+    path: "{{ lookup('env', 'HOME')}}/.kube"
+    state: directory
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0755
+
+- name: Create Create $HOME/.kube/config
+  template:
+    src: customer3/kube-config.json
+    dest: "{{ lookup('env', 'HOME')}}/.kube/config.json"
