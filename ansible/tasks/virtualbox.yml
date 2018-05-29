@@ -1,12 +1,15 @@
 ---
+- name: Install VirtualBox APT key
+  apt_key: url={{ item }} state=present
+  with_items:
+  - https://www.virtualbox.org/download/oracle_vbox.asc
+  - https://www.virtualbox.org/download/oracle_vbox_2016.asc
+
 - name: Make sure VirtualBox APT source is defined
   apt_repository:
     filename: virtualbox
     repo: "deb http://download.virtualbox.org/virtualbox/debian {{ distribution_release | default(ansible_distribution_release) }} contrib"
     state: present
-
-- name: Install VirtualBox APT key
-  apt_key: url=https://www.virtualbox.org/download/oracle_vbox.asc state=present
 
 - name: Install VirtualBox
   package: name={{ item }} state=present
