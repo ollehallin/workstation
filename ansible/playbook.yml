@@ -3,8 +3,8 @@
   connection: local
   become: yes
   vars:
-  - docker_compose_version: 1.15.0
-  - docker_machine_version: 0.12.2
+  - docker_compose_version: 1.21.2
+  - docker_machine_version: 0.14.0
   - intellij_version: 182.2371.4
   - intellij_version_name: "{{ intellij_version }}"
   - intellij_checksum: "sha256:0f8f7667f10018f161a2f871820172842827c95677e7a882c5776a62b712395d"
