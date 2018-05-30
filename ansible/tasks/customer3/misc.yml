@@ -34,6 +34,6 @@
     mode: 0755
 
 - name: Create Create $HOME/.kube/config
-  template:
-    src: customer3/kube-config.json
-    dest: "{{ lookup('env', 'HOME')}}/.kube/config.json"
+  copy:
+    src: customer3/kube-config
+    dest: "{{ lookup('env', 'HOME')}}/.kube/config"
