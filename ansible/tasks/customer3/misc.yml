@@ -1,11 +1,15 @@
 ---
-- name: Create /usr/share/ca-certificates/{{ secrets.customer3.name }}/
-  file: path=/usr/share/ca-certificates/{{ secrets.customer3.name }} state=directory
+- name: Remove /usr/share/ca-certificates/{{ secrets.customer3.name }}
+  file: path=/usr/share/ca-certificates/{{ secrets.customer3.name }} state=absent
+  notify: update-ca-certificates
 
-- name: Install /usr/share/ca-certificates/{{ secrets.customer3.name }}/{{ secrets.customer3.name }}_ca.crt
+- name: Create /usr/local/share/ca-certificates/
+  file: path=/usr/local/share/ca-certificates state=directory
+
+- name: Install /usr/local/share/ca-certificates/{{ secrets.customer3.name }}_ca.crt
   copy:
     src: customer3/web-ca.crt
-    dest: /usr/share/ca-certificates/{{ secrets.customer3.name }}/{{ secrets.customer3.name }}_ca.crt
+    dest: /usr/local/share/ca-certificates/{{ secrets.customer3.name }}_ca.crt
     owner: root
     group: root
     mode: 0644
