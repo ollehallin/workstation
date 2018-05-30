@@ -15,10 +15,11 @@
     mode: 0644
   notify: update-ca-certificates
 
-- name: Install PSQL CLI
+- name: Install various utilities
   package: name={{ item }} state=present
   with_items:
   - postgresql-client
+  - python3-pip
 
 - name: Install kubectl
   command: snap install kubectl --classic
@@ -37,3 +38,9 @@
   copy:
     src: customer3/kube-config
     dest: "{{ lookup('env', 'HOME')}}/.kube/config"
+
+- name: Install aws-adfs-tool
+  shell: pip3 install files/customer3/aws_adfs_tool-2.4.6.tar.gz
+  args:
+    creates: "{{ lookup('env', 'HOME')}}/.local/bin/aws-adfs-tool"
+  become_user: "{{ actual_username }}"

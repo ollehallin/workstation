@@ -25,6 +25,7 @@ touch ~/.netrc
 sudo chown root.root ~/.netrc
 sudo ansible-playbook -i inventory ${PLAYBOOK:-playbook.yml} -e "pwd=${PWD}" -e "actual_username=${USER}" $*
 sudo chown ${USER}.${USER} ~/.netrc
+sudo chown -R ${USER}.${USER} ~/.cache
 
 # These are hard to set via Ansible. Do it in a simpler way...
 # gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "'<Ctrl>section'"
