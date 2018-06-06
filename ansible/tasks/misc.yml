@@ -23,9 +23,9 @@
 - name: Start sshd
   service: name=sshd state=started enabled=yes
 
-- name: Create $HOME/bin
+- name: Create $HOME/.local/bin
   file:
-    path: "{{ lookup('env', 'HOME')}}/bin"
+    path: "{{ lookup('env', 'HOME')}}/.local/bin"
     state: directory
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
