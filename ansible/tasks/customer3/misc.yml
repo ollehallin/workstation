@@ -44,3 +44,9 @@
   args:
     creates: "{{ lookup('env', 'HOME')}}/.local/bin/aws-adfs-tool"
   become_user: "{{ actual_username }}"
+
+- name: Install postman
+  command: snap install postman
+  args:
+    creates: /snap/bin/postman
+
