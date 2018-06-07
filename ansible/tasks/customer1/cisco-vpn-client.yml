@@ -17,7 +17,7 @@
 - name: Install $HOME/bin/kinit-{{ secrets.customer1.name }}.sh
   copy:
     src: files/customer1/kinit.sh
-    dest: "{{ lookup('env', 'HOME')}}/bin/kinit-{{ secrets.customer1.name }}.sh"
+    dest: "{{ lookup('env', 'HOME')}}/.local/bin/kinit-{{ secrets.customer1.name }}.sh"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0700
