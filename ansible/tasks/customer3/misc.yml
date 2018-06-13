@@ -6,13 +6,14 @@
 - name: Create /usr/local/share/ca-certificates/
   file: path=/usr/local/share/ca-certificates state=directory
 
-- name: Install /usr/local/share/ca-certificates/{{ secrets.customer3.name }}_ca.crt
+- name: Install web CA certificates
   copy:
-    src: customer3/web-ca.crt
-    dest: /usr/local/share/ca-certificates/{{ secrets.customer3.name }}_ca.crt
+    src: customer3/{{ item.src }}
+    dest: /usr/local/share/ca-certificates/{{ item.target }}
     owner: root
     group: root
     mode: 0644
+  with_items: "{{ secrets.customer3.ca_certificates }}"
   notify: update-ca-certificates
 
 - name: Install various utilities
@@ -38,6 +39,9 @@
   copy:
     src: customer3/kube-config
     dest: "{{ lookup('env', 'HOME')}}/.kube/config"
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0600
 
 - name: Install aws-adfs-tool
   shell: pip3 install files/customer3/aws_adfs_tool-2.4.6.tar.gz
@@ -45,7 +49,7 @@
     creates: "{{ lookup('env', 'HOME')}}/.local/bin/aws-adfs-tool"
   become_user: "{{ actual_username }}"
 
-- name: Install postman
+- name: Install Postman
   command: snap install postman
   args:
     creates: /snap/bin/postman
