@@ -6,10 +6,11 @@
   apt_repository: filename=sbt repo="deb https://dl.bintray.com/sbt/debian /"
 
 - name: Install Scala compiler and SBT
-  package: name={{ item }} state=present
-  with_items:
-  - scala
-  - sbt
+  package:
+    name:
+    - scala
+    - sbt
+    state: present
 
 
 

@@ -12,9 +12,10 @@
     state: present
 
 - name: Install VirtualBox
-  package: name={{ item }} state=present
-  with_items:
-  - virtualbox
-  - virtualbox-ext-pack
-  - virtualbox-guest-additions-iso
-  - virtualbox-qt
+  package:
+    name:
+    - virtualbox
+    - virtualbox-ext-pack
+    - virtualbox-guest-additions-iso
+    - virtualbox-qt
+    state: present

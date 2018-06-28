@@ -1,9 +1,7 @@
 ---
 
 - name: Add Charles Proxy APT keys
-  apt_key: id={{ item }} keyserver=hkp://pgp.mit.edu:80
-  with_items:
-  - 1AD28806
+  apt_key: id=1AD28806 keyserver=hkp://pgp.mit.edu:80
 
 - name: Add Charles Proxy APT repository
   apt_repository: repo="deb https://www.charlesproxy.com/packages/apt/ charles-proxy main" filename=charles

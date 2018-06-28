@@ -9,7 +9,8 @@
     state: present
 
 - name: Install Erlang
-  package: name={{ item }} state=present
-  with_items:
-  - esl-erlang
-  - elixir
+  package:
+    name:
+    - esl-erlang
+    - elixir
+    state: present

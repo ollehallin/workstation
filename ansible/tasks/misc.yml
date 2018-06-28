@@ -1,24 +1,25 @@
 ---
 - name: Install misc utilities
-  package: name={{ item }} state=present
-  with_items:
-  - ack
-  - compizconfig-settings-manager
-  - curl
-  - dconf-cli
-  - emacs25
-  - encfs
-  - gnome-gmail
-  - indicator-cpufreq
-  - jq
-  - keepassx
-  - libimage-exiftool-perl
-  - nautilus-dropbox
-  - openssh-server
-  - synaptic
-  - tree
-  - unzip
-  - wget
+  package:
+    name:
+    - ack
+    - compizconfig-settings-manager
+    - curl
+    - dconf-cli
+    - emacs25
+    - encfs
+    - gnome-gmail
+    - indicator-cpufreq
+    - jq
+    - keepassx
+    - libimage-exiftool-perl
+    - nautilus-dropbox
+    - openssh-server
+    - synaptic
+    - tree
+    - unzip
+    - wget
+    state: present
 
 - name: Start sshd
   service: name=sshd state=started enabled=yes

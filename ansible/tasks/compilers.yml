@@ -1,26 +1,29 @@
 ---
 - name: Install OpenJDK 8
-  package: name={{ item }} state=present
-  with_items:
-  - openjdk-8-jdk
-  - openjdk-8-source
-  - openjdk-8-doc
+  package:
+    name:
+    - openjdk-8-jdk
+    - openjdk-8-source
+    - openjdk-8-doc
+    state: present
 
 - name: Uninstall OpenJDK 11
-  package: name={{ item }} state=absent
-  with_items:
-  - openjdk-11-jdk
-  - openjdk-11-jdk-headless
-  - openjdk-11-jre
-  - openjdk-11-jre-headless
-  - openjdk-11-source
-  - openjdk-11-doc
+  package:
+    name:
+    - openjdk-11-jdk
+    - openjdk-11-jdk-headless
+    - openjdk-11-jre
+    - openjdk-11-jre-headless
+    - openjdk-11-source
+    - openjdk-11-doc
+    state: absent
 
 - name: Install git and curl
-  package: name={{ item }} state=present
-  with_items:
-  - git
-  - curl
+  package:
+    name:
+    - git
+    - curl
+    state: present
 
 - name: Uninstall nodejs-legacy
   package: name=nodejs-legacy state=absent
@@ -32,10 +35,11 @@
   shell: /tmp/nodesource_apt_source.sh # creates=/etc/apt/sources.list.d/nodesource.list
 
 - name: Install NodeJS
-  package: name={{ item }} state=latest
-  with_items:
-  - nodejs
-  - build-essential
+  package:
+    name:
+    - nodejs
+    - build-essential
+    state: present
 
 - name: Remove phantomjs-prebuilt from /usr/local
   file: path={{ item }} state=absent

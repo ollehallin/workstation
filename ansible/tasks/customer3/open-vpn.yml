@@ -1,11 +1,12 @@
 ---
 - name: Install network-manager-openvpn-gnome
-  package: name={{ item }} state=present
+  package:
+    name:
+    - openvpn
+    - network-manager-openvpn
+    - network-manager-openvpn-gnome
+    state: present
   notify: systemctl restart network-manager
-  with_items:
-  - openvpn
-  - network-manager-openvpn
-  - network-manager-openvpn-gnome
 
 - name: Create /etc/openvpn/client/{{ secrets.customer3.name }}
   file: path=/etc/openvpn/client/{{ secrets.customer3.name }} state=directory

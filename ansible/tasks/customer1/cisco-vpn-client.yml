@@ -1,10 +1,11 @@
 ---
 - name: Install Cisco VPN and Kerberos clients
-  package: name={{ item }} state=present
-  with_items:
-  - vpnc
-  - network-manager-vpnc-gnome
-  - heimdal-clients
+  package:
+    name:
+    - vpnc
+    - network-manager-vpnc-gnome
+    - heimdal-clients
+    state: present
 
 - name: Install $HOME/.krb5.conf.{{ secrets.customer1.name }}
   copy:

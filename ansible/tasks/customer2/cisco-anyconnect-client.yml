@@ -1,9 +1,7 @@
 ---
 - name: Install Cisco AnyConnect client
-  package: name={{ item }} state=present
+  package: name=network-manager-openconnect state=present
   notify: systemctl daemon-reload
-  with_items:
-  - network-manager-openconnect
 
 - name: Execute vpnsetup.sh
   script: files/customer2/vpnsetup.sh

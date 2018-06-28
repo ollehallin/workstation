@@ -17,10 +17,11 @@
   notify: update-ca-certificates
 
 - name: Install various utilities
-  package: name={{ item }} state=present
-  with_items:
-  - postgresql-client
-  - python3-pip
+  package:
+    name:
+    - postgresql-client
+    - python3-pip
+    state: present
 
 - name: Install kubectl
   command: snap install kubectl --classic
