@@ -35,5 +35,5 @@
     dest: /etc/openvpn/client/{{ secrets.customer3.name }}/{{ secrets.customer3.ldap_username }}.key
     owner: root
     group: root
-    mode: 0644
+    mode: 0600
   notify: systemctl restart network-manager
