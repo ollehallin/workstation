@@ -5,9 +5,9 @@
   vars:
   - docker_compose_version: 1.21.2
   - docker_machine_version: 0.14.0
-  - intellij_version: 182.3569.1
+  - intellij_version: 182.4129.4
   - intellij_version_name: "{{ intellij_version }}"
-  - intellij_checksum: "sha256:a87e8de48a9de6ea09a2acc9007de8313865c0cb82f6fa6d9f83aa3ac5c9d5ed"
+  - intellij_checksum: "sha256:1402bfb5be2755531010ad3b67f29d292199a093d1537597e76ef4acd2982d57"
   - intellij_archive: ideaIU-{{ intellij_version_name }}-no-jdk.tar.gz
   vars_files:
   - vars/secrets.yml
