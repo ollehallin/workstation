@@ -75,3 +75,11 @@
   notify: Test AWS CLI
   loop_control:
     label: "[{{ item.s }}] {{ item.k }}=xxxxxxxx"
+
+- name: Create $HOME/.s3cfg
+  template:
+    src: s3cfg.j2
+    dest: /home/{{ actual_username }}/.s3cfg
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0600
