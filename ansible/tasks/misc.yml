@@ -14,6 +14,7 @@
     - keepassx
     - libimage-exiftool-perl
     - nautilus-dropbox
+    - nixnote2
     - openssh-server
     - synaptic
     - tree
