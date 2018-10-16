@@ -25,3 +25,12 @@
     group: "{{ actual_username }}"
     mode: 0600
     backup: yes
+
+- name: Customize Calibre DeDRM plugin
+  template:
+    src: calibre-dedrm.json
+    dest: "{{ lookup('env', 'HOME')}}/.config/calibre/plugins/dedrm.json"
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0600
+    backup: yes

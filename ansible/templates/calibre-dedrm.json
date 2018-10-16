@@ -1,0 +1,14 @@
+{
+  "bandnkeys": {},
+  "serials": [],
+  "androidkeys": {},
+  "ereaderkeys": {},
+  "kindlewineprefix": "",
+  "configured": true,
+  "adobewineprefix": "",
+  "adeptkeys": {
+    "{{ secrets.calibre.dedrm.adeptkeys.key }}": "{{ secrets.calibre.dedrm.adeptkeys.value }}"
+  },
+  "pids": [],
+  "kindlekeys": {}
+}
