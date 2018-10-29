@@ -45,10 +45,13 @@
     mode: 0600
 
 - name: Install aws-adfs-tool
-  shell: pip3 install files/customer3/aws_adfs_tool-2.4.6.tar.gz
+  shell: pip3 install files/customer3/aws_adfs_tool-2.5.16.tar.gz
   args:
     creates: "{{ lookup('env', 'HOME')}}/.local/bin/aws-adfs-tool"
   become_user: "{{ actual_username }}"
+
+- name: Symlink to aws-adfs-tools
+  file: src="{{ lookup('env', 'HOME')}}/.local/bin/aws-adfs-tool" dest=/usr/local/bin/aws-adfs-tool state=link
 
 - name: Install Postman
   command: snap install postman
