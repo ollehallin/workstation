@@ -9,20 +9,30 @@
   - intellij_version_name: "2018.3.1"
   - intellij_checksum: "sha256:2812f396a096e462a9552f0186a7516ab5d4a3eaa6ebcef36af89db12bbd0d74"
   - intellij_archive: ideaIU-{{ intellij_version_name }}-no-jdk.tar.gz
+  - sdkman_install_packages:
+    - { candidate: java, version: '11.0.1-open' }
+    - { candidate: java, version: '8.0.192-zulu' }
+    - { candidate: java, version: '7.0.201-zulu' }
+  - sdkman_defaults:
+      java: '8.0.192-zulu'
+
   vars_files:
   - vars/secrets.yml
 
   handlers:
   - import_tasks: handlers/main.yml
 
-  tasks:
+  roles:
+  - {role: comcast.sdkman, tags: sdkman}
+
+  post_tasks:
   - {import_tasks: tasks/root-password.yml, tags: aws}
   - {import_tasks: tasks/aws-cli.yml, tags: aws}
   - {import_tasks: tasks/calibre.yml, tags: calibre}
   - {import_tasks: tasks/charles-proxy.yml, tags: [charles-proxy, charles]}
   - {import_tasks: tasks/compilers.yml, tags: [compilers, codekvast]}
   - {import_tasks: tasks/docker.yml, tags: [docker, codekvast]}
-  - {import_tasks: tasks/fish.yml, tags: [fish, sdkman]}
+  - {import_tasks: tasks/fish.yml, tags: [fish]}
   - {import_tasks: tasks/google-chrome.yml, tags: [chrome, google-chrome]}
   - {import_tasks: tasks/heroku-toolbelt.yml, tags: [heroku, codekvast]}
   - {import_tasks: tasks/intellij.yml, tags: [intellij, idea, codekvast]}

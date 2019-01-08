@@ -1,10 +1,10 @@
 # Source: http://tedwise.com/2016/02/26/using-sdkman-with-the-fish-shell
 
 function sdk --description 'Software Development Kit Manager'
-  set after_env (mktemp -t env.XXXXXX)
-  set path_env (mktemp -t env.XXXXXX)
+  set after_env (mktemp -t after_env.XXXXXX)
+  set path_env (mktemp -t path_env.XXXXXX)
 
-    bash -c "source ~/.sdkman/bin/sdkman-init.sh && sdk $argv && printenv > $after_env"
+    bash -c "source ~/.sdkman/bin/sdkman-init.sh && printenv > $after_env"
 
     # remove any pre-existing .sdkman paths
     for elem in $PATH
@@ -30,11 +30,13 @@ function sdk --description 'Software Development Kit Manager'
         case '*'
           switch $env_value
             case '*/.sdkman/*'
-              eval set -g $env_name $env_value > /dev/null
+              set -ge $env_name
+              eval set -U $env_name $env_value > /dev/null
           end
       end
     end
-    set -gx PATH (cat $path_env) ^ /dev/null
+    set -ge PATH
+    set -Ux PATH (cat $path_env) ^ /dev/null
 
     rm -f $after_env
     rm -f $path_env
