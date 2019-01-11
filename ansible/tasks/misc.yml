@@ -57,11 +57,3 @@
       {{ secrets.customer2.name }}ArtifactoryUser={{ secrets.customer2.artifactory.user}}
       {{ secrets.customer2.name }}ArtifactoryPwd={{ secrets.customer2.artifactory.pwd}}
       {{ secrets.customer2.name }}ArtifactoryContext={{ secrets.customer2.artifactory.context}}
-
-- name: Install ~/.ansible.cfg
-  template:
-    src: ansible.cfg
-    dest: "{{ lookup('env', 'HOME') }}/.ansible.cfg" 
-    owner: "{{ actual_username }}"
-    group: "{{ actual_username }}"
-    mode: 0600

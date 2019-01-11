@@ -33,6 +33,8 @@
   - functions/fuck.fish
   - functions/mkd.fish
   - functions/sdk.fish
+  - functions/ansible-facts-cache-on.fish
+  - functions/ansible-facts-cache-off.fish
 
 - name: Set correct ownership of {{ fish_config_dir }}
   file: dest={{ fish_config_dir }} owner={{ actual_username }} group={{ actual_username }} recurse=yes

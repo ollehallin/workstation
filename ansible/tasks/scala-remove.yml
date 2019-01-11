@@ -1,0 +1,20 @@
+---
+- name: Remove Scala compiler and SBT
+  package:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - scala
+    - sbt
+
+- name: Remove SBT APT key
+  apt_key:
+    id: 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+    keyserver: hkp://keyserver.ubuntu.com:80
+    state: absent
+
+- name: Remove SBT APT repository
+  apt_repository:
+    filename: sbt
+    repo: "deb https://dl.bintray.com/sbt/debian /"
+    state: absent

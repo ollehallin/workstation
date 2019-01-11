@@ -1,16 +1,18 @@
 ---
 - name: Define SBT APT key
-  apt_key: id=2EE0EA64E40A89B84B2DF73499E82A75642AC823 keyserver=hkp://keyserver.ubuntu.com:80
+  apt_key:
+    id: 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+    keyserver: hkp://keyserver.ubuntu.com:80
 
 - name: Define SBT APT repository
-  apt_repository: filename=sbt repo="deb https://dl.bintray.com/sbt/debian /"
+  apt_repository:
+    filename: sbt
+    repo: "deb https://dl.bintray.com/sbt/debian /"
 
 - name: Install Scala compiler and SBT
   package:
-    name:
+    name: "{{ item }}"
+    state: present
+  with_items:
     - scala
     - sbt
-    state: present
-
-
-
