@@ -1,19 +1,9 @@
 ---
-- name: Uninstall OpenJDK
-  package: name="{{ item }}" state=absent
-  with_items:
-  - openjdk-8-jdk
-  - openjdk-8-jdk-headless
-  - openjdk-8-jre
-  - openjdk-8-jre-headless
-  - openjdk-8-source
-  - openjdk-8-doc
-  - openjdk-11-jdk
-  - openjdk-11-jdk-headless
-  - openjdk-11-jre
-  - openjdk-11-jre-headless
-  - openjdk-11-source
-  - openjdk-11-doc
+- name: Install/uninstall OpenJDK
+  package: name="openjdk-{{ item[0].version }}-{{ item[1] }}" state="{{ item[0].state }}"
+  with_nested:
+  - [ {version: 8, state: present}, {version: 11, state: absent }]
+  - [ jdk, jdk-headless, jre, jre-headless, source, doc ]
 
 - name: Install git and curl
   package:

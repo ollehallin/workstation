@@ -1,7 +1,7 @@
 ---
 - name: Install misc utilities
-  package:
-    name:
+  package: name="{{ item }}" state=present
+  with_items:
     - ack
     - compizconfig-settings-manager
     - curl
@@ -20,7 +20,6 @@
     - tree
     - unzip
     - wget
-    state: present
 
 - name: Start sshd
   service: name=sshd state=started enabled=yes
@@ -58,3 +57,11 @@
       {{ secrets.customer2.name }}ArtifactoryUser={{ secrets.customer2.artifactory.user}}
       {{ secrets.customer2.name }}ArtifactoryPwd={{ secrets.customer2.artifactory.pwd}}
       {{ secrets.customer2.name }}ArtifactoryContext={{ secrets.customer2.artifactory.context}}
+
+- name: Install ~/.ansible.cfg
+  template:
+    src: ansible.cfg
+    dest: "{{ lookup('env', 'HOME') }}/.ansible.cfg" 
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0600
