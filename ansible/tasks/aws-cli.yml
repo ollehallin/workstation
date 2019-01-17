@@ -1,20 +1,16 @@
-- name: Uninstall AWS CLI and Boto
-  package:
-    name:
+- name: Install AWS CLI and Boto
+  package: name={{ item }} state=present
+  with_items:
     - awscli
     - aws-shell
     - python-boto
     - python-boto3
-    state: absent
-
-- name: Install S3cmd
-  package:
-    name:
+    - python3-boto
+    - python3-boto3
     - s3cmd
-    state: present
 
-- name: Install snap aws-cli
-  shell: snap install {{ item }} --classic
+- name: Remove snap aws-cli
+  shell: snap remove {{ item }} --no-wait
   with_items:
     - aws-cli
 
