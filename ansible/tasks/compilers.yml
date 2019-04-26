@@ -4,6 +4,7 @@
   with_nested:
   - [ {version: 8, state: present}, {version: 11, state: absent }]
   - [ jdk, jdk-headless, jre, jre-headless, source, doc ]
+  ignore_errors: yes
 
 - name: Install git and curl
   package:
@@ -16,7 +17,7 @@
   package: name=nodejs-legacy state=absent
 
 - name: Fetch NodeJS APT source script
-  get_url: url=https://deb.nodesource.com/setup_8.x dest=/tmp/nodesource_apt_source.sh mode=0755
+  get_url: url=https://deb.nodesource.com/setup_10.x dest=/tmp/nodesource_apt_source.sh mode=0755
 
 - name: Execute NodeJS APT source script
   shell: /tmp/nodesource_apt_source.sh # creates=/etc/apt/sources.list.d/nodesource.list
@@ -34,5 +35,10 @@
   - /usr/local/lib/node_modules/phantomjs-prebuilt
   - /usr/local/bin/phantomjs
 
+- name: Install npm
+  package: name=npm state=present
+
+- name: Upgrade npm
+  shell: npm install -g npm
 - name: Install gradlew finder
   template: src=gradlew-finder.sh dest=/usr/local/bin/gradle mode=a=rx
