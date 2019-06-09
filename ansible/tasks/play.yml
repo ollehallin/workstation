@@ -16,7 +16,7 @@
 - name: Unpack /tmp/{{ playArchive }} into {{ playTargetDir }}
   unarchive: src=/tmp/{{ playArchive }} dest="{{ appsDir}}" creates="{{ playTargetDir }}" copy=no
 
-- name: Set correct owner to {{ playTargetDir}}
+- name: Set correct owner of {{ playTargetDir}}
   file: path={{ playTargetDir}} owner={{ actual_username }} group={{ actual_username }} recurse=yes
 
 - name: Create symlink {{ appsDir }}/play -> {{ playTargetDir }} for convenience

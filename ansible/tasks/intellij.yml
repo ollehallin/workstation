@@ -17,7 +17,7 @@
 - name: Unpack /tmp/{{ intellij_archive }} into {{ ideaTargetDir }}
   unarchive: src=/tmp/{{ intellij_archive }} dest="{{ appsDir}}" creates="{{ ideaTargetDir }}" copy=no
 
-- name: Set correct owner to {{ ideaTargetDir}}
+- name: Set correct owner of {{ ideaTargetDir}}
   file: path={{ ideaTargetDir}} owner={{ actual_username }} group={{ actual_username }} recurse=yes
 
 - name: Create symlink {{ appsDir }}/idea -> {{ ideaTargetDir }} for convenience
