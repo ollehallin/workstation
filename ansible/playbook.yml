@@ -15,6 +15,8 @@
     - { candidate: java, version: '7.0.201-zulu' }
   - sdkman_defaults:
       java: '8.0.192-zulu'
+  - slack_version: 3.4.2
+  - slack_archive: https://downloads.slack-edge.com/linux_releases/slack-desktop-{{ slack_version }}-amd64.deb
 
   vars_files:
   - vars/secrets.yml
@@ -39,6 +41,7 @@
   - {import_tasks: tasks/misc.yml, tags: misc}
   - {import_tasks: tasks/nfs-mounts.yml, tags: [fstab, nfs, nfs-mounts]}
   - {import_tasks: tasks/scala-remove.yml, tags: [compilers, scala]}
+  - {import_tasks: tasks/slack.yml, tags: slack}
   - {import_tasks: tasks/spotify.yml, tags: spotify}
   - {import_tasks: tasks/vagrant.yml, tags: vagrant}
   - {import_tasks: tasks/virtualbox.yml, tags: virtualbox}
