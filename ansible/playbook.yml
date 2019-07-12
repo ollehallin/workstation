@@ -5,9 +5,9 @@
   vars:
   - docker_compose_version: 1.23.2
   - docker_machine_version: 0.16.0
-  - intellij_version: 192.4488.21
+  - intellij_version: 192.5728.12	
   - intellij_version_name: "{{ intellij_version }}"
-  - intellij_checksum: "sha256:e73d7be40793312cd35c7bb565b805465d973f3cca619a26bc9e192dc5e4288e"
+  - intellij_checksum: "sha256:b6ef730f3854441b311f2770ec5dd90559a4b274be131e9ac8caeb4214d7ba00"
   - intellij_archive: ideaIU-{{ intellij_version_name }}.tar.gz
   - sdkman_install_packages:
     - { candidate: java, version: '11.0.1-open' }
