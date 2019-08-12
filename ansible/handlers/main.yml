@@ -8,7 +8,7 @@
   - hit
   - crisp
   - codekvast
-  - "{{ secrets.aws.customer4.profile }}"
+  - "{{ secrets.customer4.name }}"
 
 - name: systemctl daemon-reload
   shell: systemctl daemon-reload

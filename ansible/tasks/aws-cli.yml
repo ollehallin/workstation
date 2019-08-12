@@ -36,6 +36,7 @@
   - { s: 'profile hit', k: region, v: eu-west-1 }
   - { s: 'profile crisp', k: region, v: eu-central-1 }
   - { s: 'profile codekvast', k: region, v: eu-central-1 }
+  - { s: 'profile {{ secrets.customer4.name }}', k: region, v: eu-west-1 }
   notify: Test AWS CLI
   loop_control:
     label: "[{{ item.s }}] {{ item.k }}={{ item.v }}"
@@ -57,8 +58,8 @@
   - { s: 'codekvast', k: 'aws_secret_access_key', v: "{{ secrets.aws.hit.secret_key }}" }
   - { s: 'crisp', k: 'aws_access_key_id', v: "{{ secrets.aws.crisp.access_key }}" }
   - { s: 'crisp', k: 'aws_secret_access_key', v: "{{ secrets.aws.crisp.secret_key }}" }
-  - { s: "{{ secrets.aws.customer4.profile }}", k: 'aws_access_key_id', v: "{{ secrets.aws.customer4.access_key }}" }
-  - { s: "{{ secrets.aws.customer4.profile }}", k: 'aws_secret_access_key', v: "{{ secrets.aws.customer4.secret_key }}" }
+  - { s: "{{ secrets.customer4.name }}", k: 'aws_access_key_id', v: "{{ secrets.aws.customer4.access_key }}" }
+  - { s: "{{ secrets.customer4.name }}", k: 'aws_secret_access_key', v: "{{ secrets.aws.customer4.secret_key }}" }
   notify: Test AWS CLI
   loop_control:
     label: "[{{ item.s }}] {{ item.k }}=xxxxxxxx"
@@ -80,8 +81,8 @@
   - { s: 'codekvast', k: 'aws_secret_access_key', v: "{{ secrets.aws.hit.secret_key }}" }
   - { s: 'crisp', k: 'aws_access_key_id', v: "{{ secrets.aws.crisp.access_key }}" }
   - { s: 'crisp', k: 'aws_secret_access_key', v: "{{ secrets.aws.crisp.secret_key }}" }
-  - { s: "{{ secrets.aws.customer4.profile }}", k: 'aws_access_key_id', v: "{{ secrets.aws.customer4.access_key }}" }
-  - { s: "{{ secrets.aws.customer4.profile }}", k: 'aws_secret_access_key', v: "{{ secrets.aws.customer4.secret_key }}" }
+  - { s: "{{ secrets.customer4.name }}", k: 'aws_access_key_id', v: "{{ secrets.aws.customer4.access_key }}" }
+  - { s: "{{ secrets.customer4.name }}", k: 'aws_secret_access_key', v: "{{ secrets.aws.customer4.secret_key }}" }
   notify: Test AWS CLI
   loop_control:
     label: "[{{ item.s }}] {{ item.k }}=xxxxxxxx"
