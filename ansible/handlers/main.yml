@@ -3,11 +3,12 @@
   shell: sysctl --system
 
 - name: Test AWS CLI
-  shell: aws --profile {{ item }} ec2 describe-availability-zones
+  shell: aws --profile {{ item }} sts get-caller-identity
   with_items:
   - hit
   - crisp
   - codekvast
+  - "{{ secrets.aws.customer4.profile }}"
 
 - name: systemctl daemon-reload
   shell: systemctl daemon-reload

@@ -57,6 +57,8 @@
   - { s: 'codekvast', k: 'aws_secret_access_key', v: "{{ secrets.aws.hit.secret_key }}" }
   - { s: 'crisp', k: 'aws_access_key_id', v: "{{ secrets.aws.crisp.access_key }}" }
   - { s: 'crisp', k: 'aws_secret_access_key', v: "{{ secrets.aws.crisp.secret_key }}" }
+  - { s: "{{ secrets.aws.customer4.profile }}", k: 'aws_access_key_id', v: "{{ secrets.aws.customer4.access_key }}" }
+  - { s: "{{ secrets.aws.customer4.profile }}", k: 'aws_secret_access_key', v: "{{ secrets.aws.customer4.secret_key }}" }
   notify: Test AWS CLI
   loop_control:
     label: "[{{ item.s }}] {{ item.k }}=xxxxxxxx"
@@ -78,6 +80,8 @@
   - { s: 'codekvast', k: 'aws_secret_access_key', v: "{{ secrets.aws.hit.secret_key }}" }
   - { s: 'crisp', k: 'aws_access_key_id', v: "{{ secrets.aws.crisp.access_key }}" }
   - { s: 'crisp', k: 'aws_secret_access_key', v: "{{ secrets.aws.crisp.secret_key }}" }
+  - { s: "{{ secrets.aws.customer4.profile }}", k: 'aws_access_key_id', v: "{{ secrets.aws.customer4.access_key }}" }
+  - { s: "{{ secrets.aws.customer4.profile }}", k: 'aws_secret_access_key', v: "{{ secrets.aws.customer4.secret_key }}" }
   notify: Test AWS CLI
   loop_control:
     label: "[{{ item.s }}] {{ item.k }}=xxxxxxxx"
