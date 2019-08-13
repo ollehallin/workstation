@@ -1,8 +1,0 @@
----
-- name: Install sonic-token.sh
-  template:
-     src: customer4/sonic-token.sh
-     dest: "{{ lookup('env', 'HOME')}}/.local/bin/sonic-token.sh"
-     mode: 0755
-     owner: "{{ actual_username }}"
-     group: "{{ actual_username }}"

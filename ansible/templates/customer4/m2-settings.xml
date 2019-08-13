@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <servers>
+    <server>
+      <username>{{ secrets.customer4.nexus.username }}</username>
+      <password>{{ secrets.customer4.nexus.password }}</password>
+      <id>all</id>
+    </server>
+    <server>
+      <username>{{ secrets.customer4.nexus.username }}</username>
+      <password>{{ secrets.customer4.nexus.password }}</password>
+      <id>central</id>
+    </server>
+    <server>
+      <username>{{ secrets.customer4.nexus.username }}</username>
+      <password>{{ secrets.customer4.nexus.password }}</password>
+      <id>snapshots</id>
+    </server>
+  </servers>
+
+  <mirrors>
+    <mirror>
+      <mirrorOf>*</mirrorOf>
+      <name>all</name>
+      <url>{{ secrets.customer4.nexus.host }}/repository/all</url>
+      <id>all</id>
+    </mirror>
+  </mirrors>
+  
+  <profiles>
+    <profile>
+      <repositories>
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>libs-release</name>
+          <url>{{ secrets.customer4.nexus.host }}/repository/libs-release</url>
+        </repository>
+        <repository>
+          <snapshots />
+          <id>snapshots</id>
+          <name>libs-snapshot</name>
+          <url>{{ secrets.customer4.nexus.host }}/repository/libs-snapshot</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>libs-release</name>
+          <url>{{ secrets.customer4.nexus.host }}/repository/libs-release</url>
+        </pluginRepository>
+        <pluginRepository>
+          <snapshots />
+          <id>snapshots</id>
+          <name>libs-snapshot</name>
+          <url>{{ secrets.customer4.nexus.host }}/repository/libs-snapshot</url>
+        </pluginRepository>
+      </pluginRepositories>
+      <id>sonic-nexus</id>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>sonic-nexus</activeProfile>
+  </activeProfiles>
+</settings>
