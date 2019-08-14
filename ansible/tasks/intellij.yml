@@ -7,7 +7,7 @@
 - name: Download https://download.jetbrains.com/idea/{{ intellij_archive }} to /tmp/{{ intellij_archive }}
   get_url:
     url: https://download.jetbrains.com/idea/{{ intellij_archive }}
-    checksum: "{{ intellij_checksum }}"
+    checksum: "{{ intellij_checksum | default(omit) }}"
     dest: /tmp/{{ intellij_archive }}
     timeout: 30
 
