@@ -21,3 +21,6 @@
 
 - name: update-ca-certificates
   shell: update-ca-certificates
+
+- name: xdg-mime default ssh.desktop x-scheme-handler/ssh
+  shell: xdg-mime default ssh.desktop x-scheme-handler/ssh

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Name=Handler for ssh:// links
+Exec=bash -c '(URL="%U" HOST="${URL:6}"; ssh $HOST); bash'
+Terminal=true
+Type=Application
+Icon=utilities-terminal

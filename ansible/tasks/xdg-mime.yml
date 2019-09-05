@@ -1,0 +1,9 @@
+---
+- name: Install handler for ssh:// links
+  copy:
+    src: ssh.desktop
+    dest: "{{ lookup('env', 'HOME') }}/.local/share/applications/ssh.desktop"
+    owner: "{{ actual_username }}"
+    group: "{{ actual_username }}"
+    mode: 0644
+  notify: xdg-mime default ssh.desktop x-scheme-handler/ssh
