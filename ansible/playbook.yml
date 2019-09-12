@@ -5,16 +5,16 @@
   vars:
   - docker_compose_version: 1.23.2
   - docker_machine_version: 0.16.0
-  - intellij_version: 192.6262.9
+  - intellij_version: 193.2956.37
   - intellij_version_name: "{{ intellij_version }}"
-  - intellij_checksum: "sha256:6e426590562fbb955beb453ec5b677c1da61287201235a84795b86c69ac59014"
+  - intellij_checksum: "sha256:69cacd8714e6c899f8ae9f6448fe0a674220bf18771e1651f2a46d24e754ad4f"
   - intellij_archive: ideaIU-{{ intellij_version_name }}.tar.gz
   - sdkman_install_packages:
-    - { candidate: java, version: '11.0.1-open' }
-    - { candidate: java, version: '8.0.192-zulu' }
-    - { candidate: java, version: '7.0.201-zulu' }
+    - { candidate: java, version: '11.0.4-zulu' }
+    - { candidate: java, version: '8.0.222-zulu' }
+    - { candidate: java, version: '7.0.232-zulu' }
   - sdkman_defaults:
-      java: '8.0.192-zulu'
+      java: '8.0.222-zulu'
   - slack_version: 3.4.2
   - slack_archive: https://downloads.slack-edge.com/linux_releases/slack-desktop-{{ slack_version }}-amd64.deb
 
