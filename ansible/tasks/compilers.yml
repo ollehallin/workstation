@@ -13,21 +13,26 @@
     - curl
     state: present
 
-- name: Uninstall nodejs-legacy
-  package: name=nodejs-legacy state=absent
+- name: Uninstall nodejs-legacy and npm
+  package:
+    name:
+    - nodejs-legacy
+    - npm
+    state: absent
 
 - name: Fetch NodeJS APT source script
-  get_url: url=https://deb.nodesource.com/setup_10.x dest=/tmp/nodesource_apt_source.sh mode=0755
+  get_url: url=https://deb.nodesource.com/setup_12.x dest=/tmp/nodesource_setup_12.x.sh mode=0755
 
 - name: Execute NodeJS APT source script
-  shell: /tmp/nodesource_apt_source.sh # creates=/etc/apt/sources.list.d/nodesource.list
+  shell: /tmp/nodesource_setup_12.x.sh # creates=/etc/apt/sources.list.d/nodesource.list
 
 - name: Install NodeJS
-  package:
+  apt:
     name:
     - nodejs
     - build-essential
-    state: present
+    state: latest
+    update_cache: yes
 
 - name: Remove phantomjs-prebuilt from /usr/local
   file: path={{ item }} state=absent
@@ -35,10 +40,8 @@
   - /usr/local/lib/node_modules/phantomjs-prebuilt
   - /usr/local/bin/phantomjs
 
-- name: Install npm
-  package: name=npm state=present
-
-- name: Upgrade npm
-  shell: npm install -g npm
 - name: Install gradlew finder
-  template: src=gradlew-finder.sh dest=/usr/local/bin/gradle mode=a=rx
+  template: src=gradlew-finder.sh dest=/usr/local/bin/gradlew mode=a=rx
+
+- name: Remove old gradlew finder
+  file: path=/usr/local/bin/gradle state=absent
