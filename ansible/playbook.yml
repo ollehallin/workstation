@@ -3,9 +3,9 @@
   connection: local
   become: yes
   vars:
-  - docker_compose_version: 1.23.2
-  - docker_machine_version: 0.16.0
-  - intellij_version: 193.2956.37
+  - docker_compose_version: "1.24.1"
+  - docker_machine_version: "0.16.0"
+  - intellij_version: "193.2956.37"
   - intellij_version_name: "{{ intellij_version }}"
   - intellij_checksum: "sha256:69cacd8714e6c899f8ae9f6448fe0a674220bf18771e1651f2a46d24e754ad4f"
   - intellij_archive: ideaIU-{{ intellij_version_name }}.tar.gz
