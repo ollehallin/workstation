@@ -14,7 +14,7 @@
   lineinfile:
     dest: "{{ actual_home }}/.config/calibre/global.py"
     regexp: ^library_path.*
-    line: library_path = u'{{ actual_home }}/Dropbox/Calibre-jobb'
+    line: "library_path = u'{{ actual_home }}/Dropbox/Calibre-jobb'"
     backup: yes
 
 - name: Customize Calibre SMTP

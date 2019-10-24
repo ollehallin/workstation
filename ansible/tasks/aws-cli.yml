@@ -16,7 +16,7 @@
 
 - name: Create AWS config directory
   file:
-    path: {{ actual_home }}/.aws
+    path: "{{ actual_home }}/.aws"
     state: directory
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
@@ -24,7 +24,7 @@
 
 - name: Configure AWS CLI profiles
   ini_file:
-    dest: {{ actual_home }}/.aws/config
+    dest: "{{ actual_home }}/.aws/config"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0644
@@ -43,7 +43,7 @@
 
 - name: Configure AWS CLI credentials
   ini_file:
-    dest: {{ actual_home }}/.aws/credentials
+    dest: "{{ actual_home }}/.aws/credentials"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0600
@@ -66,7 +66,7 @@
 
 - name: Configure Boto profiles
   ini_file:
-    dest: {{ actual_home }}/.boto
+    dest: "{{ actual_home }}/.boto"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0600
@@ -90,7 +90,7 @@
 - name: Create $HOME/.s3cfg
   template:
     src: s3cfg.j2
-    dest: {{ actual_home }}/.s3cfg
+    dest: "{{ actual_home }}/.s3cfg"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0600
