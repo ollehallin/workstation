@@ -4,7 +4,7 @@
 
 - name: Create Calibre config directory
   file:
-    path: "{{ lookup('env', 'HOME')}}/.config/calibre"
+    path: "{{ actual_home }}/.config/calibre"
     state: directory
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
@@ -12,15 +12,15 @@
 
 - name: Customize Calibre library path
   lineinfile:
-    dest: "{{ lookup('env', 'HOME')}}/.config/calibre/global.py"
+    dest: "{{ actual_home }}/.config/calibre/global.py"
     regexp: ^library_path.*
-    line: library_path = u'{{ lookup('env', 'HOME')}}/Dropbox/Calibre-jobb'
+    line: library_path = u'{{ actual_home }}/Dropbox/Calibre-jobb'
     backup: yes
 
 - name: Customize Calibre SMTP
   template:
     src: calibre-smtp.py
-    dest: "{{ lookup('env', 'HOME')}}/.config/calibre/smtp.py"
+    dest: "{{ actual_home }}/.config/calibre/smtp.py"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0600
@@ -29,7 +29,7 @@
 - name: Customize Calibre DeDRM plugin
   template:
     src: calibre-dedrm.json
-    dest: "{{ lookup('env', 'HOME')}}/.config/calibre/plugins/dedrm.json"
+    dest: "{{ actual_home }}/.config/calibre/plugins/dedrm.json"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0600

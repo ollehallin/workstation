@@ -1,7 +1,7 @@
 ---
 - set_fact:
-    sdkman_dir: "{{ lookup('env', 'HOME')}}/.sdkman"
-    fish_config_dir: "{{ lookup('env', 'HOME')}}/.config/fish"
+    sdkman_dir: "{{ actual_home }}/.sdkman"
+    fish_config_dir: "{{ actual_home }}/.config/fish"
 
 - name: Install Fish & pip3
   package:

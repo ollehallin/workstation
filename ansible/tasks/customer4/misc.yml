@@ -2,7 +2,7 @@
 - name: Install sonic-token.sh
   template:
      src: customer4/sonic-token.sh
-     dest: "{{ lookup('env', 'HOME')}}/.local/bin/sonic-token.sh"
+     dest: "{{ actual_home }}/.local/bin/sonic-token.sh"
      mode: 0755
      owner: "{{ actual_username }}"
      group: "{{ actual_username }}"
@@ -10,7 +10,7 @@
 - name: Install ~/.m2/settings.xml
   template:
     src: customer4/m2-settings.xml
-    dest: "{{ lookup('env', 'HOME')}}/.m2/settings.xml"
+    dest: "{{ actual_home }}/.m2/settings.xml"
     mode: 0755
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"

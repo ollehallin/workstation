@@ -6,7 +6,6 @@
     - compizconfig-settings-manager
     - curl
     - dconf-cli
-    - emacs25
     - encfs
     - gnome-gmail
     - indicator-cpufreq
@@ -20,13 +19,14 @@
     - tree
     - unzip
     - wget
+    - xemacs21
 
 - name: Start sshd
   service: name=sshd state=started enabled=yes
 
 - name: Create $HOME/.local/bin
   file:
-    path: "{{ lookup('env', 'HOME')}}/.local/bin"
+    path: "{{ actual_home }}/.local/bin"
     state: directory
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"

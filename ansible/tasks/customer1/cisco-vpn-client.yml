@@ -10,7 +10,7 @@
 - name: Install $HOME/.krb5.conf.{{ secrets.customer1.name }}
   copy:
     src: files/customer1/krb5.conf
-    dest: "{{ lookup('env', 'HOME')}}/.krb5.conf.{{ secrets.customer1.name }}"
+    dest: "{{ actual_home }}/.krb5.conf.{{ secrets.customer1.name }}"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0600
@@ -18,7 +18,7 @@
 - name: Install $HOME/bin/kinit-{{ secrets.customer1.name }}.sh
   copy:
     src: files/customer1/kinit.sh
-    dest: "{{ lookup('env', 'HOME')}}/.local/bin/kinit-{{ secrets.customer1.name }}.sh"
+    dest: "{{ actual_home }}/.local/bin/kinit-{{ secrets.customer1.name }}.sh"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0700

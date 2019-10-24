@@ -26,13 +26,9 @@
 - name: Create {{ desktopFile }}
   template: src=templates/jetbrains-idea.desktop dest={{ desktopFile }} owner={{ actual_username }} group={{ actual_username }} mode=0755
 
-- name: Increase inotify watch limit
+- name: Increase inotify watch limit and enable CPU profiling
   template: src=60-jetbrains.conf dest=/etc/sysctl.d/60-jetbrains.conf
   notify: sysctl --system
 
-# - name: Remove old system-wide cruft
-#   file: path={{ item }} state=absent
-#   with_items:
-#   - /usr/share/applications/jetbrains-idea.desktop
-#   - /opt/idea-IU-{{ intellij_version }}
-#   - /opt/idea
+- name: "Install linux-tools-{{ ansible_kernel }}"
+  apt: name=linux-tools-{{ ansible_kernel }} state=present

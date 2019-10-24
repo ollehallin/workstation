@@ -30,7 +30,7 @@
 
 - name: Create $HOME/.kube
   file:
-    path: "{{ lookup('env', 'HOME')}}/.kube"
+    path: "{{ actual_home }}/.kube"
     state: directory
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
@@ -39,7 +39,7 @@
 - name: Create Create $HOME/.kube/config
   copy:
     src: customer3/kube-config
-    dest: "{{ lookup('env', 'HOME')}}/.kube/config"
+    dest: "{{ actual_home }}/.kube/config"
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
     mode: 0600
@@ -47,11 +47,11 @@
 - name: Install aws-adfs-tool
   shell: pip3 install files/customer3/aws_adfs_tool-2.5.16.tar.gz
   args:
-    creates: "{{ lookup('env', 'HOME')}}/.local/bin/aws-adfs-tool"
+    creates: "{{ actual_home }}/.local/bin/aws-adfs-tool"
   become_user: "{{ actual_username }}"
 
 - name: Symlink to aws-adfs-tools
-  file: src="{{ lookup('env', 'HOME')}}/.local/bin/aws-adfs-tool" dest=/usr/local/bin/aws-adfs-tool state=link
+  file: src="{{ actual_home }}/.local/bin/aws-adfs-tool" dest=/usr/local/bin/aws-adfs-tool state=link
 
 - name: Install Postman
   command: snap install postman

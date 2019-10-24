@@ -23,7 +23,7 @@ fi
 cd "$(dirname "$0")/ansible" || exit
 touch ~/.netrc
 sudo chown root.root ~/.netrc
-sudo ansible-playbook -i inventory "${PLAYBOOK:-playbook.yml}" -e "pwd=${PWD}" -e "actual_username=${USER}" $*
+sudo ansible-playbook -i inventory "${PLAYBOOK:-playbook.yml}" -e "pwd=${PWD}" -e "actual_home=${HOME}" -e "actual_username=${USER}" $*
 sudo chown "${USER}"."${USER}" ~/.netrc
 sudo chown -R "${USER}"."${USER}" ~/.cache
 
