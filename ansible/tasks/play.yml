@@ -1,8 +1,8 @@
 ---
 - set_fact:
-    appsDir: "{{ lookup('env', 'HOME') }}/apps"
+    appsDir: "{{ actual_home }}/apps"
     playArchive: "play-{{ play_version }}.zip"
-    playTargetDir: "{{ lookup('env', 'HOME') }}/apps/play-{{ play_version }}"
+    playTargetDir: "{{ actual_home }}/apps/play-{{ play_version }}"
 
 - name: "Download https://downloads.typesafe.com/play/{{ play_version }}/{{ playArchive }} to /tmp/{{ playArchive }}"
   get_url:

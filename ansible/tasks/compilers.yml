@@ -2,7 +2,7 @@
 - name: Install/uninstall OpenJDK
   package: name="openjdk-{{ item[0].version }}-{{ item[1] }}" state="{{ item[0].state }}"
   with_nested:
-  - [ {version: 8, state: present}, {version: 11, state: absent }]
+  - [ {version: 8, state: absent}, {version: 11, state: absent }]
   - [ jdk, jdk-headless, jre, jre-headless, source, doc ]
   ignore_errors: yes
 

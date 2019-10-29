@@ -34,7 +34,7 @@
 
 - name: Create $HOME/.gradle
   file:
-    path: "{{ lookup('env', 'HOME') }}/.gradle"
+    path: "{{ actual_home }}/.gradle"
     state: directory
     owner: "{{ actual_username }}"
     group: "{{ actual_username }}"
@@ -42,7 +42,7 @@
 
 - name: Edit $HOME/.gradle/gradle.properties
   blockinfile:
-    dest: "{{ lookup('env', 'HOME') }}/.gradle/gradle.properties"
+    dest: "{{ actual_home }}/.gradle/gradle.properties"
     create: yes
     backup: yes
     owner: "{{ actual_username }}"

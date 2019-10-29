@@ -4,9 +4,12 @@
   apt_key: id={{ item }} keyserver=hkp://keyserver.ubuntu.com:80
   with_items:
   - 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+  - 4773BD5E130D1D45
 
 - name: Add Spotify APT repository
-  apt_repository: repo="deb http://repository.spotify.com stable non-free" filename=spotify.list
+  apt_repository:
+    filename: spotify
+    repo: "deb http://repository.spotify.com stable non-free"
 
 - name: Install Spotify
   package: name=spotify-client state=present

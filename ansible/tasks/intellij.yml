@@ -1,8 +1,8 @@
 ---
 - set_fact:
-    appsDir: "{{ lookup('env', 'HOME') }}/apps"
-    ideaTargetDir: "{{ lookup('env', 'HOME') }}/apps/idea-IU-{{ intellij_version }}"
-    desktopFile: "{{ lookup('env', 'HOME') }}/.local/share/applications/jetbrains-idea.desktop"
+    appsDir: "{{ actual_home }}/apps"
+    ideaTargetDir: "{{ actual_home }}/apps/idea-IU-{{ intellij_version }}"
+    desktopFile: "{{ actual_home }}/.local/share/applications/jetbrains-idea.desktop"
 
 - name: Download https://download.jetbrains.com/idea/{{ intellij_archive }} to /tmp/{{ intellij_archive }}
   get_url:
