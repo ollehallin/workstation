@@ -8,6 +8,7 @@
     - dconf-cli
     - encfs
     - gnome-gmail
+    - gpg
     - indicator-cpufreq
     - jq
     - keepassx
@@ -40,6 +41,13 @@
     group: "{{ actual_username }}"
     mode: 755
 
+- name: Import Codekvast GPG keypair
+  shell: gpg --import {{ item }}
+  ignore_errors: yes
+  with_items:
+    - vars/codekvast.gpg.pub
+    - vars/codekvast.gpg.priv
+
 - name: Edit $HOME/.gradle/gradle.properties
   blockinfile:
     dest: "{{ actual_home }}/.gradle/gradle.properties"
@@ -49,11 +57,9 @@
     group: "{{ actual_username }}"
     mode: 0600
     block: |
-      org.gradle.daemon=true
+      codekvast.bintray.user={{ secrets.bintray.user }}
+      codekvast.bintray.key={{ secrets.bintray.key }}
 
-      bintrayUser={{ secrets.bintray.user }}
-      bintrayKey={{ secrets.bintray.key }}
-
-      {{ secrets.customer2.name }}ArtifactoryUser={{ secrets.customer2.artifactory.user}}
-      {{ secrets.customer2.name }}ArtifactoryPwd={{ secrets.customer2.artifactory.pwd}}
-      {{ secrets.customer2.name }}ArtifactoryContext={{ secrets.customer2.artifactory.context}}
+      codekvast.gpg.keyId={{ secrets.codekvast.gpg.keyId }}
+      codekvast.gpg.password={{ secrets.codekvast.gpg.password }}
+      codekvast.gpg.secretKeyRingFile={{ actual_home }}/.gnupg/pubring.kbx
