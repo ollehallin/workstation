@@ -62,4 +62,4 @@
 
       codekvast.gpg.keyId={{ secrets.codekvast.gpg.keyId }}
       codekvast.gpg.password={{ secrets.codekvast.gpg.password }}
-      codekvast.gpg.secretKeyRingFile={{ actual_home }}/.gnupg/pubring.kbx
+      codekvast.gpg.secretKeyRingFile={{ actual_home }}/.gnupg/codekvast.kbx
