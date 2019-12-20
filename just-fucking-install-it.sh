@@ -34,6 +34,9 @@ sudo chown root.root ~/.netrc
 
 sudo ansible-playbook -i inventory "${PLAYBOOK:-playbook.yml}" -e "pwd=${PWD}" -e "actual_home=${HOME}" -e "actual_username=${USER}" $*
 
+# Restore ownership of certain directories
+sudo chown -R ${USER}.${USER} $HOME/.gradle
+
 # These are hard to set via Ansible. Do it in a simpler way...
 # gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "'<Ctrl>section'"
 gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier "'<Alt><Super>'"
