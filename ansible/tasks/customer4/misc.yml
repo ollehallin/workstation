@@ -1,7 +1,4 @@
 ---
-- name: Install oathtool
-  apt: name=oathtool state=installed
-
 - name: Install auth scripts
   template:
      src: customer4/{{ item.src }}
@@ -11,11 +8,10 @@
      group: "{{ actual_username }}"
   with_items:
     - {src: aws-token.sh, dest: "{{ secrets.customer4.product }}-token.sh"}
-    - {src: oauthtool.sh, dest: "{{ secrets.customer4.product }}-mfa.sh"}
 
 - name: "Create $HOME/./aws/{{ secrets.customer4.product }}.mfa"
   copy:
-    dest: "{{ actual_home }}/.aws/{{ secrets.customer4.product }}.mfa"
+    dest: "{{ actual_home }}/.aws/{{ secrets.customer4.name }}.mfa"
     content: "{{ secrets.customer4.mfa_base }}"
     mode: 0600
     owner: "{{ actual_username }}"
