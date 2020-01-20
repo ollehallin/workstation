@@ -13,6 +13,9 @@
     - curl
     state: present
 
+- name: git config --global credential.helper store
+  shell: git config --global credential.helper store
+
 - name: Uninstall nodejs-legacy and npm
   package:
     name:
