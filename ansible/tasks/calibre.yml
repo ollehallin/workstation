@@ -1,6 +1,6 @@
 ---
 - name: Install Calibre
-  package: name=calibre state=installed
+  package: name=calibre state=present
 
 - name: Create Calibre config directory
   file:

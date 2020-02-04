@@ -10,11 +10,10 @@
   - intellij_checksum: "sha256:0944d1b15e6d8d8c13e33ed0bb43773bf7a2cd2100a679c2a668d543a7931de8"
   - intellij_archive: ideaIU-{{ intellij_version_name }}.tar.gz
   - sdkman_install_packages:
-    - { candidate: java, version: '11.0.4-zulu' }
-    - { candidate: java, version: '8.0.222-zulu' }
-    - { candidate: java, version: '7.0.232-zulu' }
+    - { candidate: java, version: '11.0.6-zulu' }
+    - { candidate: java, version: '8.0.242-zulu' }
   - sdkman_defaults:
-      java: '8.0.222-zulu'
+      java: '11.0.6-zulu'
   - slack_version: 4.1.1
   - slack_archive: https://downloads.slack-edge.com/linux_releases/slack-desktop-{{ slack_version }}-amd64.deb
 
