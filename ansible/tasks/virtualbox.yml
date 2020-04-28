@@ -5,10 +5,10 @@
   - https://www.virtualbox.org/download/oracle_vbox.asc
   - https://www.virtualbox.org/download/oracle_vbox_2016.asc
 
-- name: Make sure VirtualBox APT source is defined
+- name: Define VirtualBox APT source
   apt_repository:
     filename: virtualbox
-    repo: "deb http://download.virtualbox.org/virtualbox/debian {{ distribution_release | default(ansible_distribution_release) }} contrib"
+    repo: "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ distribution_release | default(ansible_distribution_release) }} contrib"
     state: present
 
 - name: Install VirtualBox
