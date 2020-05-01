@@ -49,3 +49,21 @@
 
 - name: Remove old gradlew finder
   file: path=/usr/local/bin/gradle state=absent
+
+- name: Install Python3
+  package: name=python3 state=present
+
+- name: Install pip3
+  package: name=python3-pip state=present
+
+- name: Make Python3 default
+  alternatives:
+    name: "{{ item }}"
+    link: "/usr/bin/{{ item }}"
+    path: "/usr/bin/{{ item }}3"
+  with_items:
+    - python
+    - pip
+
+- name: Remove Python2
+  package: name=python2.7 state=absent
