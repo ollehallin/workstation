@@ -57,10 +57,10 @@
   package: name=python3-pip state=present
 
 - name: Make Python3 default
-  alternatives:
-    name: "{{ item }}"
-    link: "/usr/bin/{{ item }}"
-    path: "/usr/bin/{{ item }}3"
+  file:
+    path: "/usr/bin/{{ item }}"
+    src: "/usr/bin/{{ item }}3"
+    state: link
   with_items:
     - python
     - pip
