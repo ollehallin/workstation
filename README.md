@@ -22,7 +22,7 @@ It installs the following tools on my Ubuntu (16.10+) workstation:
 - Intellij (missing .debs)
 - Fish (convenience)
 - AWS CLI (convenience)
-- Heroku Toolbox (custom APT source)
+- Heroku Toolbox (snap)
 - Calibre e-book library manager (with support for emailing to my Kindle)
 - Spotify (custom APT source)
 - OpenVPN (with customers' config)

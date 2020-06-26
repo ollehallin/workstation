@@ -11,7 +11,7 @@
     - gpg
     - indicator-cpufreq
     - jq
-    - keepassx
+    - keepassxc
     - libimage-exiftool-perl
     - nautilus-dropbox
     - nixnote2
@@ -22,6 +22,11 @@
     - unzip
     - wget
     - xemacs21
+
+- name: Remove obsolete utilities
+  package: name="{{ item }}" state=absent
+  with_items:
+    - keepassx
 
 - name: Start sshd
   service: name=sshd state=started enabled=yes

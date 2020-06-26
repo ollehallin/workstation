@@ -24,11 +24,10 @@
     state: absent
 
 - name: Fetch NodeJS APT source script
-  get_url: url=https://deb.nodesource.com/setup_12.x dest=/tmp/nodesource_setup_12.x.sh mode=0755
+  get_url: url=https://deb.nodesource.com/setup_14.x dest=/tmp/nodesource_setup_14.x.sh mode=0755
 
 - name: Execute NodeJS APT source script
-  shell: /tmp/nodesource_setup_12.x.sh # creates=/etc/apt/sources.list.d/nodesource.list
-  ignore_errors: yes # TODO: Does not support Eoan yet
+  shell: /tmp/nodesource_setup_14.x.sh # creates=/etc/apt/sources.list.d/nodesource.list
 
 - name: Install NodeJS
   apt:
