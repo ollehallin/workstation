@@ -1,8 +1,8 @@
 ---
-- name: Install Docker APT key
+- name: Add Docker APT key
   apt_key: url=https://download.docker.com/linux/ubuntu/gpg id=0EBFCD88
 
-- name: Define Docker APT repository
+- name: Add Docker APT source
   apt_repository:
     filename: docker
     repo: 'deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ distribution_release | default(ansible_distribution_release) }} stable'

@@ -1,8 +1,8 @@
 ---
-- name: Install Erlang Solutions APT key
+- name: Add Erlang Solutions APT key
   apt_key: url=https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc state=present
 
-- name: Make sure Erlang Solutions APT source is defined
+- name: Add Erlang Solutions APT source
   apt_repository:
     filename: erlang
     repo: "deb https://packages.erlang-solutions.com/ubuntu {{ distribution_release | default(ansible_distribution_release) }} contrib"

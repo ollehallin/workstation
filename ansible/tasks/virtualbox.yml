@@ -1,5 +1,5 @@
 ---
-- name: Install VirtualBox APT key
+- name: Add VirtualBox APT key
   apt_key: url={{ item }} state=present
   with_items:
   - https://www.virtualbox.org/download/oracle_vbox.asc

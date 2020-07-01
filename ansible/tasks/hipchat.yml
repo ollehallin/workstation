@@ -1,8 +1,8 @@
 ---
-- name: Install Atlassian APT key
+- name: Add Atlassian APT key
   apt_key: url=https://atlassian.artifactoryonline.com/atlassian/api/gpg/key/public state=present
 
-- name: Make sure Hipchat APT source is defined
+- name: Add Hipchat APT source
   apt_repository:
     filename: hipchat
     repo: "deb https://atlassian.artifactoryonline.com/atlassian/hipchat-apt-client {{ distribution_release | default(ansible_distribution_release) }} main"

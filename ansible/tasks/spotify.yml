@@ -6,7 +6,7 @@
   - 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
   - 4773BD5E130D1D45
 
-- name: Add Spotify APT repository
+- name: Add Spotify APT source
   apt_repository:
     filename: spotify
     repo: "deb http://repository.spotify.com stable non-free"

@@ -3,7 +3,7 @@
 - name: Add Charles Proxy APT keys
   apt_key: id=1AD28806 keyserver=hkp://pgp.mit.edu:80
 
-- name: Add Charles Proxy APT repository
+- name: Add Charles Proxy APT source
   apt_repository:
     filename: charles
     repo: "deb https://www.charlesproxy.com/packages/apt/ charles-proxy main"
