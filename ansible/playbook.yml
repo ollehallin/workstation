@@ -5,10 +5,10 @@
   vars:
   - docker_compose_version: "1.26.0"
   - docker_machine_version: "0.16.0"
-  - intellij_version: "201.6668.121"
-  # - intellij_version_name: "{{ intellij_version }}"
-  - intellij_version_name: "2020.1"
-  - intellij_checksum: "sha256:b8f352cf3ca59613ce02692911e8ab271c7d2365d4a5c6e6e0efb39c71d37412"
+  - intellij_version: "202.6397.20"
+  - intellij_version_name: "{{ intellij_version }}"
+  # - intellij_version_name: "2020.1"
+  - intellij_checksum: "sha256:3089675efd2bb0cb31d0c76e65314ba75e74261ab224913627892df250d8d9a6"
   - intellij_archive: ideaIU-{{ intellij_version_name }}.tar.gz
   - sdkman_install_packages:
     - { candidate: java, version: '11.0.7-zulu' }
