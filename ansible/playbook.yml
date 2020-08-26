@@ -5,11 +5,9 @@
   vars:
   - docker_compose_version: "1.26.0"
   - docker_machine_version: "0.16.0"
-  - intellij_version: "202.6397.94"
-  - intellij_version_name: "{{ intellij_version }}"
-  - intellij_version_name: "2020.2"
-  - intellij_checksum: "sha256:0a097d9e20f239bfd28be17ad36c5ce2cb7814c84f90da6ca827e5ea9e3ef8be"
-  - intellij_archive: ideaIU-{{ intellij_version_name }}.tar.gz
+  - jetbrains_toolbox_version: "1.17.7391"
+  - jetbrains_toolbox_checksum: "sha256:6d474d55d9cee81e790f728d7801ef69f24e7685c63bbc9484e6e6c1edda29d5"
+  - jetbrains_toolbox_archive: jetbrains-toolbox-{{ jetbrains_toolbox_version }}.tar.gz
   - sdkman_install_packages:
     - { candidate: java, version: '11.0.7-zulu' }
     - { candidate: java, version: '8.0.252-zulu' }
@@ -32,12 +30,12 @@
   - {import_tasks: tasks/aws-cli.yml, tags: aws}
   - {import_tasks: tasks/calibre.yml, tags: calibre}
   - {import_tasks: tasks/charles-proxy.yml, tags: [charles-proxy, charles]}
-  - {import_tasks: tasks/compilers.yml, tags: [compilers, codekvast]}
-  - {import_tasks: tasks/docker.yml, tags: [docker, codekvast]}
+  - {import_tasks: tasks/compilers.yml, tags: [compilers]}
+  - {import_tasks: tasks/docker.yml, tags: [docker]}
   - {import_tasks: tasks/fish.yml, tags: [fish]}
   - {import_tasks: tasks/google-chrome.yml, tags: [chrome, google-chrome]}
-  - {import_tasks: tasks/heroku-toolbelt.yml, tags: [heroku, codekvast]}
-  - {import_tasks: tasks/intellij.yml, tags: [intellij, idea, codekvast]}
+  - {import_tasks: tasks/heroku-toolbelt.yml, tags: [heroku]}
+  - {import_tasks: tasks/jetbrains.yml, tags: [jetbrains, intellij, idea]}
   - {import_tasks: tasks/misc.yml, tags: misc}
   - {import_tasks: tasks/nfs-mounts.yml, tags: [fstab, nfs, nfs-mounts]}
   - {import_tasks: tasks/scala-remove.yml, tags: [compilers, scala]}

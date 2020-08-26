@@ -1,0 +1,36 @@
+---
+- set_fact:
+    appsDir: "{{ actual_home }}/apps"
+    toolboxTargetDir: "{{ actual_home }}/apps/jetbrains-toolbox-{{ jetbrains_toolbox_version }}"
+
+- name: Download https://download.jetbrains.com/toolbox/{{ jetbrains_toolbox_archive }} to /tmp/{{ jetbrains_toolbox_archive }}
+  get_url:
+    url: https://download.jetbrains.com/toolbox/{{ jetbrains_toolbox_archive }}
+    checksum: "{{ jetbrains_toolbox_checksum | default(omit) }}"
+    dest: /tmp/{{ jetbrains_toolbox_archive }}
+    timeout: 30
+
+- name: Create {{ appsDir }}
+  file: path="{{ appsDir }}" state=directory owner={{ actual_username }} group={{ actual_username }}
+
+- name: Unpack /tmp/{{ jetbrains_toolbox_archive }} into {{ toolboxTargetDir }}
+  unarchive: src=/tmp/{{ jetbrains_toolbox_archive }} dest="{{ appsDir}}" creates="{{ toolboxTargetDir }}" copy=no
+
+- name: Set correct owner of {{ toolboxTargetDir}}
+  file: path={{ toolboxTargetDir}} owner={{ actual_username }} group={{ actual_username }} recurse=yes
+
+- name: Create symlink {{ appsDir }}/jetbrains-toolbox -> {{ toolboxTargetDir }} for convenience
+  file: src={{ toolboxTargetDir }}  dest={{ appsDir }}/jetbrains-toolbox state=link owner={{ actual_username }} group={{ actual_username }}
+
+- name: Increase inotify watch limit and enable CPU profiling
+  template: src=60-jetbrains.conf dest=/etc/sysctl.d/60-jetbrains.conf
+  notify: sysctl --system
+
+- name: "Install linux-tools-{{ ansible_kernel }}"
+  apt: name=linux-tools-{{ ansible_kernel }} state=present
+
+- name: "Remove old hand-installed IDEA"
+  file: path="{{ item }}" state=absent
+  with_items:
+    - "{{ actual_home }}/.local/share/applications/jetbrains-idea.desktop"
+    - "{{ appsDir }}/idea"
