@@ -13,7 +13,7 @@
     - { candidate: java, version: '8.0.252-zulu' }
   - sdkman_defaults:
       java: '11.0.7-zulu'
-  - slack_version: 4.4.2
+  - slack_version: 4.8.0
   - slack_archive: https://downloads.slack-edge.com/linux_releases/slack-desktop-{{ slack_version }}-amd64.deb
 
   vars_files:
