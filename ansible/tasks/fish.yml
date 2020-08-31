@@ -7,6 +7,7 @@
   package:
     name:
     - fish
+    - fzf
     - thefuck
     - python3-dev
     - python3-pip
@@ -35,6 +36,8 @@
   - functions/sdk.fish
   - functions/ansible-facts-cache-on.fish
   - functions/ansible-facts-cache-off.fish
+  - functions/fish_user_key_bindings.fish
+  - functions/aws_token.fish
 
 - name: Set correct ownership of {{ fish_config_dir }}
   file: dest={{ fish_config_dir }} owner={{ actual_username }} group={{ actual_username }} recurse=yes

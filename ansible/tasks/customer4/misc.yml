@@ -1,13 +1,10 @@
 ---
-- name: Install auth scripts
-  template:
-     src: customer4/{{ item.src }}
-     dest: "{{ actual_home }}/.local/bin/{{ item.dest }}"
-     mode: 0755
-     owner: "{{ actual_username }}"
-     group: "{{ actual_username }}"
+- name: Remove obsolete auth scripts
+  file:
+     path: "{{ actual_home }}/.local/bin/{{ item }}"
+     state: absent
   with_items:
-    - {src: aws-token.sh, dest: "{{ secrets.customer4.product }}-token.sh"}
+    - "{{ secrets.customer4.product }}-token.sh"
 
 - name: "Create $HOME/./aws/{{ secrets.customer4.product }}.mfa"
   copy:
@@ -30,3 +27,7 @@
   command: snap install postman
   args:
      creates: /snap/bin/postman
+
+- name: Install Gimme AWS Creds
+  command: pip3 install --upgrade gimme-aws-creds
+

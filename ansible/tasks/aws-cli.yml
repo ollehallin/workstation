@@ -1,16 +1,32 @@
-- name: Install AWS CLI and Boto
-  package: name={{ item }} state=present
+- name: Remove AWS CLI v1
+  package: name={{ item }} state=absent
   with_items:
     - awscli
-    - aws-shell
-    - python3-boto
-    - python3-boto3
-    - s3cmd
 
 - name: Remove snap aws-cli
   shell: snap remove {{ item }} --no-wait
   with_items:
     - aws-cli
+
+- name: Install Boto
+  package: name={{ item }} state=present
+  with_items:
+    - aws-shell
+    - python3-boto
+    - python3-boto3
+    - s3cmd
+
+- name: Create /tmp/aws-cli
+  file: path=/tmp/aws-cli state=directory
+
+- name: Fetch AWS CLI archive
+  unarchive:
+    src: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+    dest: "/tmp/aws-cli"
+    remote_src: yes
+
+- name: Install AWS CLI
+  command: /tmp/aws-cli/aws/install --update
 
 - name: Create AWS config directory
   file:
@@ -32,9 +48,11 @@
     backup: yes
   with_items:
   - { s: 'profile hit', k: region, v: eu-west-1 }
+  - { s: 'profile hit', k: output, v: json }
   - { s: 'profile crisp', k: region, v: eu-central-1 }
+  - { s: 'profile crisp', k: output, v: json }
   - { s: 'profile codekvast', k: region, v: eu-central-1 }
-  - { s: 'profile {{ secrets.customer4.name }}', k: region, v: eu-west-1 }
+  - { s: 'profile codekvast', k: output, v: json }
   notify: Test AWS CLI
   loop_control:
     label: "[{{ item.s }}] {{ item.k }}={{ item.v }}"
@@ -52,12 +70,10 @@
   with_items:
   - { s: 'hit', k: 'aws_access_key_id', v: "{{ secrets.aws.hit.access_key }}" }
   - { s: 'hit', k: 'aws_secret_access_key', v: "{{ secrets.aws.hit.secret_key }}" }
-  - { s: 'codekvast', k: 'aws_access_key_id', v: "{{ secrets.aws.hit.access_key }}" }
-  - { s: 'codekvast', k: 'aws_secret_access_key', v: "{{ secrets.aws.hit.secret_key }}" }
   - { s: 'crisp', k: 'aws_access_key_id', v: "{{ secrets.aws.crisp.access_key }}" }
   - { s: 'crisp', k: 'aws_secret_access_key', v: "{{ secrets.aws.crisp.secret_key }}" }
-  - { s: "{{ secrets.customer4.name }}", k: 'aws_access_key_id', v: "{{ secrets.aws.customer4.access_key }}" }
-  - { s: "{{ secrets.customer4.name }}", k: 'aws_secret_access_key', v: "{{ secrets.aws.customer4.secret_key }}" }
+  - { s: 'codekvast', k: 'aws_access_key_id', v: "{{ secrets.aws.hit.access_key }}" }
+  - { s: 'codekvast', k: 'aws_secret_access_key', v: "{{ secrets.aws.hit.secret_key }}" }
   notify: Test AWS CLI
   loop_control:
     label: "[{{ item.s }}] {{ item.k }}=xxxxxxxx"
@@ -79,8 +95,6 @@
   - { s: 'codekvast', k: 'aws_secret_access_key', v: "{{ secrets.aws.hit.secret_key }}" }
   - { s: 'crisp', k: 'aws_access_key_id', v: "{{ secrets.aws.crisp.access_key }}" }
   - { s: 'crisp', k: 'aws_secret_access_key', v: "{{ secrets.aws.crisp.secret_key }}" }
-  - { s: "{{ secrets.customer4.name }}", k: 'aws_access_key_id', v: "{{ secrets.aws.customer4.access_key }}" }
-  - { s: "{{ secrets.customer4.name }}", k: 'aws_secret_access_key', v: "{{ secrets.aws.customer4.secret_key }}" }
   notify: Test AWS CLI
   loop_control:
     label: "[{{ item.s }}] {{ item.k }}=xxxxxxxx"

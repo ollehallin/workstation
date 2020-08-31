@@ -54,3 +54,24 @@
   user: name={{ actual_username }} groups=docker append=yes
   notify:
   - 'Relogin needed'
+
+- name: Fetch docker-credential-secretservice
+  unarchive:
+    src: https://github.com/docker/docker-credential-helpers/releases/download/v0.6.3/docker-credential-secretservice-v0.6.3-amd64.tar.gz
+    remote_src: yes
+    dest: /usr/local/bin/
+    force: yes
+    mode: a=rx
+
+- name: Logout from Docker
+  command: docker logout
+
+- name: Insert sercretservice as Docker credential helper
+  lineinfile:
+    path: "{{ actual_home }}/.docker/config.json"
+    insertafter: "^{"
+    firstmatch: yes
+    state: present
+    backup: yes
+    line: '        "credStore": "secretservice",'
+

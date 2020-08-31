@@ -8,7 +8,6 @@
   - hit
   - crisp
   - codekvast
-  - "{{ secrets.customer4.name }}"
 
 - name: systemctl daemon-reload
   shell: systemctl daemon-reload
