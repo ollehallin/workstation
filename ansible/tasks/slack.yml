@@ -1,6 +1,7 @@
 ---
-- name: Remove Slack snap
-  snap: name=slack state=absent
+- name: Remove APT Slack
+  apt: name=slack state=absent
 
-- name: Installing Slack {{ slack_version }}
-  apt: state=present deb="{{ slack_archive }}"
+- name: Install Slack snap
+  snap: name=slack state=present classic=yes
+

@@ -9,10 +9,10 @@
   - jetbrains_toolbox_checksum: "sha256:6d474d55d9cee81e790f728d7801ef69f24e7685c63bbc9484e6e6c1edda29d5"
   - jetbrains_toolbox_archive: jetbrains-toolbox-{{ jetbrains_toolbox_version }}.tar.gz
   - sdkman_install_packages:
-    - { candidate: java, version: '11.0.7-zulu' }
-    - { candidate: java, version: '8.0.252-zulu' }
+    - { candidate: java, version: '11.0.8-zulu' }
+    - { candidate: java, version: '8.0.265-zulu' }
   - sdkman_defaults:
-      java: '11.0.7-zulu'
+      java: '11.0.8-zulu'
   - slack_version: 4.8.0
   - slack_archive: https://downloads.slack-edge.com/linux_releases/slack-desktop-{{ slack_version }}-amd64.deb
 
