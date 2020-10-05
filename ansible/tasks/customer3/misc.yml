@@ -24,9 +24,7 @@
     state: present
 
 - name: Install kubectl
-  command: snap install kubectl --classic
-  args:
-    creates: /snap/bin/kubectl
+  snap: name=kubectl classic=yes state=present
 
 - name: Create $HOME/.kube
   file:
@@ -54,7 +52,5 @@
   file: src="{{ actual_home }}/.local/bin/aws-adfs-tool" dest=/usr/local/bin/aws-adfs-tool state=link
 
 - name: Install Postman
-  command: snap install postman
-  args:
-    creates: /snap/bin/postman
+  snap: name=postman state=present
 

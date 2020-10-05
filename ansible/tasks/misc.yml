@@ -11,7 +11,6 @@
     - gpg
     - indicator-cpufreq
     - jq
-    - keepassxc
     - libimage-exiftool-perl
     - nautilus-dropbox
     - nixnote2
@@ -23,10 +22,14 @@
     - wget
     - xemacs21
 
-- name: Remove obsolete utilities
-  package: name="{{ item }}" state=absent
+- name: Remove apt-installed keepassxc
+  package: name=keepassxc state=absent
+
+- name: Install snaps
+  snap: name="{{ item }}" state=present
   with_items:
-    - keepassx
+    - keepassxc
+    - postman
 
 - name: Start sshd
   service: name=sshd state=started enabled=yes

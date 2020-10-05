@@ -4,9 +4,7 @@
     - awscli
 
 - name: Remove snap aws-cli
-  shell: snap remove {{ item }} --no-wait
-  with_items:
-    - aws-cli
+  snap: name=aws-cli state=absent
 
 - name: Install Boto
   package: name={{ item }} state=present
