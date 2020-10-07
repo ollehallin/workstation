@@ -3,45 +3,49 @@
   connection: local
   become: yes
   vars:
-  - docker_compose_version: "1.26.0"
-  - docker_machine_version: "0.16.0"
-  - jetbrains_toolbox_version: "1.17.7391"
-  - jetbrains_toolbox_checksum: "sha256:6d474d55d9cee81e790f728d7801ef69f24e7685c63bbc9484e6e6c1edda29d5"
-  - jetbrains_toolbox_archive: jetbrains-toolbox-{{ jetbrains_toolbox_version }}.tar.gz
-  - sdkman_install_packages:
-    - { candidate: java, version: '11.0.8-zulu' }
-    - { candidate: java, version: '8.0.265-zulu' }
-  - sdkman_defaults:
-      java: '11.0.8-zulu'
-  - slack_version: 4.8.0
-  - slack_archive: https://downloads.slack-edge.com/linux_releases/slack-desktop-{{ slack_version }}-amd64.deb
+    docker_compose_version: "1.26.0"
+    docker_machine_version: "0.16.0"
+    jetbrains_toolbox_version: "1.18.7455"
+    jetbrains_toolbox_checksum: "sha256:5d8acef010816cec5082e37cf07607c59cf1534d3fd7d9546d5cbb55149cdd54"
+    jetbrains_toolbox_archive: jetbrains-toolbox-{{ jetbrains_toolbox_version }}.tar.gz
+    jetbrains_toolbox_url: https://download.jetbrains.com/toolbox/{{ jetbrains_toolbox_archive }}
+    sdkman_install_packages:
+        - { candidate: java, version: '11.0.8-zulu' }
+        - { candidate: java, version: '8.0.265-zulu' }
+    sdkman_defaults:
+        java: '11.0.8-zulu'
+    slack_version: 4.8.0
+    slack_archive: https://downloads.slack-edge.com/linux_releases/slack-desktop-{{ slack_version }}-amd64.deb
+    dropbox_version: 2020.03.04
+    dropbox_archive: https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_{{ dropbox_version }}_amd64.deb
 
   vars_files:
-  - vars/secrets.yml
+    - vars/secrets.yml
 
   handlers:
-  - import_tasks: handlers/main.yml
+    - import_tasks: handlers/main.yml
 
   roles:
-  - {role: comcast.sdkman, tags: sdkman}
+    - { role: comcast.sdkman, tags: sdkman }
 
   post_tasks:
-  - {import_tasks: tasks/root-password.yml, tags: aws}
-  - {import_tasks: tasks/aws-cli.yml, tags: aws}
-  - {import_tasks: tasks/calibre.yml, tags: calibre}
-  - {import_tasks: tasks/charles-proxy.yml, tags: [charles-proxy, charles]}
-  - {import_tasks: tasks/compilers.yml, tags: [compilers]}
-  - {import_tasks: tasks/docker.yml, tags: [docker]}
-  - {import_tasks: tasks/fish.yml, tags: [fish]}
-  - {import_tasks: tasks/google-chrome.yml, tags: [chrome, google-chrome]}
-  - {import_tasks: tasks/heroku-toolbelt.yml, tags: [heroku]}
-  - {import_tasks: tasks/jetbrains.yml, tags: [jetbrains, intellij, idea]}
-  - {import_tasks: tasks/misc.yml, tags: misc}
-  - {import_tasks: tasks/nfs-mounts.yml, tags: [fstab, nfs, nfs-mounts]}
-  - {import_tasks: tasks/scala-remove.yml, tags: [compilers, scala]}
-  - {import_tasks: tasks/slack.yml, tags: slack}
-  - {import_tasks: tasks/spotify.yml, tags: spotify}
-  - {import_tasks: tasks/vagrant.yml, tags: vagrant}
-  - {import_tasks: tasks/virtualbox.yml, tags: virtualbox}
-  - {import_tasks: tasks/xdg-mime.yml, tags: xdg-mime}
-  - {import_tasks: tasks/yarn.yml, tags: yarn}
+    - { import_tasks: tasks/root-password.yml, tags: aws }
+    - { import_tasks: tasks/aws-cli.yml, tags: aws }
+    - { import_tasks: tasks/calibre.yml, tags: calibre }
+    - { import_tasks: tasks/charles-proxy.yml, tags: [ charles-proxy, charles ] }
+    - { import_tasks: tasks/compilers.yml, tags: [ compilers ] }
+    - { import_tasks: tasks/docker.yml, tags: [ docker ] }
+    - { import_tasks: tasks/dropbox.yml, tags: [ dropbox ] }
+    - { import_tasks: tasks/fish.yml, tags: [ fish ] }
+    - { import_tasks: tasks/google-chrome.yml, tags: [ chrome, google-chrome ] }
+    - { import_tasks: tasks/heroku-toolbelt.yml, tags: [ heroku ] }
+    - { import_tasks: tasks/jetbrains.yml, tags: [ jetbrains, intellij, idea ] }
+    - { import_tasks: tasks/misc.yml, tags: misc }
+    - { import_tasks: tasks/nfs-mounts.yml, tags: [ fstab, nfs, nfs-mounts ] }
+    - { import_tasks: tasks/scala-remove.yml, tags: [ compilers, scala ] }
+    - { import_tasks: tasks/slack.yml, tags: slack }
+    - { import_tasks: tasks/spotify.yml, tags: spotify }
+    - { import_tasks: tasks/vagrant.yml, tags: vagrant }
+    - { import_tasks: tasks/virtualbox.yml, tags: virtualbox }
+    - { import_tasks: tasks/xdg-mime.yml, tags: xdg-mime }
+    - { import_tasks: tasks/yarn.yml, tags: yarn }

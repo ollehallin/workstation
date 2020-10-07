@@ -12,7 +12,6 @@
     - indicator-cpufreq
     - jq
     - libimage-exiftool-perl
-    - nautilus-dropbox
     - nixnote2
     - oathtool
     - openssh-server

@@ -2,11 +2,19 @@
 - name: Add Google APT key
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state=present
 
-- name: Add Google Chrome APT source
+- name: Remove Google Chrome APT source for non-amd64
   apt_repository:
     filename: google-chrome
     repo: "deb http://dl.google.com/linux/chrome/deb/ stable main"
+    state: absent
+    update_cache: false
+
+- name: Add Google Chrome APT source for amd64
+  apt_repository:
+    filename: google-chrome
+    repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
     state: present
+    update_cache: true
 
 - name: Install Google Chrome
   package: name=google-chrome-stable state=present

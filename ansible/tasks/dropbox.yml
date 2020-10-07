@@ -1,0 +1,6 @@
+---
+- name: Remove nautilus-dropbox
+  package: name=nautilus-dropbox state=absent
+
+- name: "Install Dropbox from {{ dropbox_archive }}"
+  apt: deb="{{ dropbox_archive }}"

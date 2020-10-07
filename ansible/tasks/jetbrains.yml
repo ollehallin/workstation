@@ -3,9 +3,9 @@
     appsDir: "{{ actual_home }}/apps"
     toolboxTargetDir: "{{ actual_home }}/apps/jetbrains-toolbox-{{ jetbrains_toolbox_version }}"
 
-- name: Download https://download.jetbrains.com/toolbox/{{ jetbrains_toolbox_archive }} to /tmp/{{ jetbrains_toolbox_archive }}
+- name: Download {{ jetbrains_toolbox_url }} to /tmp/{{ jetbrains_toolbox_archive }}
   get_url:
-    url: https://download.jetbrains.com/toolbox/{{ jetbrains_toolbox_archive }}
+    url: "{{ jetbrains_toolbox_url }}"
     checksum: "{{ jetbrains_toolbox_checksum | default(omit) }}"
     dest: /tmp/{{ jetbrains_toolbox_archive }}
     timeout: 30
