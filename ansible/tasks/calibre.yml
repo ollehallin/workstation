@@ -1,6 +1,21 @@
 ---
+- name: Uninstall Calibre that was installed from APT
+  package: name=calibre state=absent
+
+- set_fact:
+    calibre_installer: "https://download.calibre-ebook.com/linux-installer.sh"
+    calibre_installer_local: "/tmp/calibre-installer.sh"
+
+- name: Download Calibre installer
+  get_url:
+    url: "{{ calibre_installer }}"
+    dest: "{{ calibre_installer_local }}"
+    mode: 0755
+
 - name: Install Calibre
-  package: name=calibre state=present
+  shell:
+    cmd: "{{ calibre_installer_local }}"
+    creates: "/usr/bin/calibre"
 
 - name: Create Calibre config directory
   file:
