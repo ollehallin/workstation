@@ -23,7 +23,7 @@
   file: src={{ toolboxTargetDir }}  dest={{ appsDir }}/jetbrains-toolbox state=link owner={{ actual_username }} group={{ actual_username }}
 
 - name: Increase inotify watch limit and enable CPU profiling
-  template: src=60-jetbrains.conf dest=/etc/sysctl.d/60-jetbrains.conf
+  template: src=sysctl/60-jetbrains.conf dest=/etc/sysctl.d/60-jetbrains.conf
   notify: sysctl --system
 
 - name: "Install linux-tools-{{ ansible_kernel }}"

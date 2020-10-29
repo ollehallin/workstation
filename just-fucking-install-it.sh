@@ -14,11 +14,6 @@ if [[ "$(command -v ansible)" == "" ]]; then
     sudo pip3 install ansible
 fi
 
-if [[ "$(command -v ohai)" == "" ]]; then
-    echo "Installing ohai"
-    sudo apt install -y software-properties-common ohai libssl-dev
-fi
-
 if [[ "$(command -v git-crypt)" == "" ]]; then
     echo "Installing git-crypt..."
     sudo apt install git-crypt

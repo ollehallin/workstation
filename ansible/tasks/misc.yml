@@ -31,7 +31,7 @@
     - postman
 
 - name: Start sshd
-  service: name=sshd state=started enabled=yes
+  service: name=ssh state=started enabled=yes
 
 - name: Create $HOME/.local/bin
   file:
