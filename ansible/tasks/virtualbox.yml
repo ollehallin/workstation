@@ -1,4 +1,7 @@
 ---
+- name: Define distribution release
+  set_fact: distribution_release=focal
+
 - name: Add VirtualBox APT key
   apt_key: url={{ item }} state=present
   with_items:

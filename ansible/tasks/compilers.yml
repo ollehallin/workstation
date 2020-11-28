@@ -60,6 +60,7 @@
     path: "/usr/bin/{{ item }}"
     src: "/usr/bin/{{ item }}3"
     state: link
+  ignore_errors: true
   with_items:
     - python
     - pip

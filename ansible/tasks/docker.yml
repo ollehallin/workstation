@@ -1,4 +1,7 @@
 ---
+- name: Set distribution release
+  set_fact: distribution_release=focal
+
 - name: Add Docker APT key
   apt_key: url=https://download.docker.com/linux/ubuntu/gpg id=0EBFCD88
 
@@ -35,21 +38,6 @@
     force: yes
     mode: a=rx
 
-- name: Check installed version of docker-machine
-  command: docker-machine --version
-  register: installed_version
-  ignore_errors: yes
-  failed_when: false
-  changed_when: false
-
-- name: Install docker-machine
-  when: installed_version.stdout is not defined or installed_version.stdout.find(docker_machine_version) == -1
-  get_url:
-    url: https://github.com/docker/machine/releases/download/v{{ docker_machine_version }}/docker-machine-{{ ansible_system }}-{{ ansible_architecture }}
-    dest: /usr/local/bin/docker-machine
-    force: yes
-    mode: a=rx
-
 - name: Add user to docker group
   user: name={{ actual_username }} groups=docker append=yes
   notify:
@@ -60,7 +48,6 @@
     src: https://github.com/docker/docker-credential-helpers/releases/download/v0.6.3/docker-credential-secretservice-v0.6.3-amd64.tar.gz
     remote_src: yes
     dest: /usr/local/bin/
-    force: yes
     mode: a=rx
 
 - name: Logout from Docker
@@ -74,4 +61,4 @@
     state: present
     backup: yes
     line: '        "credStore": "secretservice",'
-
+  ignore_errors: true
