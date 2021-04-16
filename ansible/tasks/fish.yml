@@ -30,14 +30,18 @@
   - completions/aws.fish
   - completions/docker.fish
   - completions/sdk.fish
+  - functions/ansible-facts-cache-off.fish
+  - functions/ansible-facts-cache-on.fish
+  - functions/aws_token.fish
   - functions/fish_prompt.fish
+  - functions/fish_user_key_bindings.fish
+  - functions/fisher.fish
   - functions/fuck.fish
   - functions/mkd.fish
   - functions/sdk.fish
-  - functions/ansible-facts-cache-on.fish
-  - functions/ansible-facts-cache-off.fish
-  - functions/fish_user_key_bindings.fish
-  - functions/aws_token.fish
+
+- name: Add SDKMAN paths to PATH
+  shell: /usr/bin/fish -c "fisher install reitzig/sdkman-for-fish"
 
 - name: Set correct ownership of {{ fish_config_dir }}
   file: dest={{ fish_config_dir }} owner={{ actual_username }} group={{ actual_username }} recurse=yes
