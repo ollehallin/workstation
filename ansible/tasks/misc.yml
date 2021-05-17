@@ -9,7 +9,6 @@
     - encfs
     - gnome-gmail
     - gpg
-    - indicator-cpufreq
     - jq
     - libimage-exiftool-perl
     - nixnote2
@@ -21,8 +20,11 @@
     - wget
     - xemacs21
 
-- name: Remove apt-installed keepassxc
-  package: name=keepassxc state=absent
+- name: Remove obsolete apt packages
+  package: name="{{ item }}" state=absent
+  with_items:
+    - indicator-cpufreq
+    - keepassxc
 
 - name: Install snaps
   snap: name="{{ item }}" state=present
